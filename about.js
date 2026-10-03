@@ -1,264 +1,95 @@
 /* =========================================================
-   ABOUT PAGE JAVASCRIPT
+   ABOUT PAGE JS — INTERACTION & REVEAL SYSTEM
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
-
-    /* =====================================================
-       PAGE ENTRY
-    ===================================================== */
-
-    const transition =
-        document.querySelector(".page-transition");
-
-
-    requestAnimationFrame(() => {
-
-        setTimeout(() => {
-
-            transition?.classList.add("is-loaded");
-
-        }, 100);
-
-    });
-
-
-    /* =====================================================
-       PAGE EXIT
-    ===================================================== */
-
-    const transitionLinks =
-        document.querySelectorAll(".transition-link");
-
-
-    transitionLinks.forEach(link => {
-
-        link.addEventListener("click", event => {
-
-            const target =
-                link.getAttribute("href");
-
-            if (
-                !target ||
-                target.startsWith("#") ||
-                link.target === "_blank"
-            ) {
-                return;
-            }
-
-
-            event.preventDefault();
-
-
-            if (transition) {
-                transition.classList.remove("is-loaded");
-                transition.classList.add("is-entering");
-            }
-
-
+    // 1. Page Loader Fade
+    const pageLoader = document.getElementById("pageLoader");
+    if (pageLoader) {
+        window.addEventListener("load", () => {
             setTimeout(() => {
+                pageLoader.style.opacity = "0";
+                pageLoader.style.pointerEvents = "none";
+            }, 600);
+        });
+    }
 
-                window.location.href = target;
+    // 2. Smooth Scroll to Approach Section
+    const scrollTrigger = document.getElementById("scrollTrigger");
+    if (scrollTrigger) {
+        scrollTrigger.addEventListener("click", () => {
+            const targetId = scrollTrigger.getAttribute("data-scroll-target");
+            if (targetId) {
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: "smooth" });
+                }
+            }
+        });
+    }
 
-            }, 850);
+    // 3. Subtle Hero Portrait Micro-Parallax (3px to 6px max)
+    const heroSection = document.getElementById("hero");
+    const heroPortrait = document.getElementById("heroPortrait");
+    const portraitStage = document.getElementById("portraitStage");
 
+    if (heroSection && heroPortrait && window.innerWidth > 900) {
+        let reqId = null;
+
+        heroSection.addEventListener("mousemove", (e) => {
+            if (reqId) cancelAnimationFrame(reqId);
+
+            reqId = requestAnimationFrame(() => {
+                const rect = heroSection.getBoundingClientRect();
+                const mouseX = (e.clientX - rect.left) / rect.width - 0.5;
+                const mouseY = (e.clientY - rect.top) / rect.height - 0.5;
+
+                // Max 4px movement on portrait image
+                const moveX = mouseX * 8;
+                const moveY = mouseY * 8;
+
+                heroPortrait.style.transform = `scale(1.02) translate(${moveX}px, ${moveY}px)`;
+            });
         });
 
-    });
+        heroSection.addEventListener("mouseleave", () => {
+            if (reqId) cancelAnimationFrame(reqId);
+            heroPortrait.style.transform = "scale(1) translate(0px, 0px)";
+        });
+    }
 
-
-    /* =====================================================
-       REVEAL ANIMATIONS
-    ===================================================== */
-
-    const revealElements =
-        document.querySelectorAll(".reveal");
-
-
-    const revealObserver =
-        new IntersectionObserver(
-            entries => {
-
-                entries.forEach(entry => {
-
-                    if (entry.isIntersecting) {
-
-                        entry.target.classList.add("visible");
-
-                        revealObserver.unobserve(
-                            entry.target
-                        );
-
-                    }
-
-                });
-
-            },
-            {
-                threshold: 0.15
-            }
-        );
-
-
-    revealElements.forEach(element => {
-
-        revealObserver.observe(element);
-
-    });
-
-
-    /* =====================================================
-       SECTION NAVIGATION & SCROLL SPY
-    ===================================================== */
-
-    const sections = Array.from(document.querySelectorAll(".about-section"));
-    const sectionLinks = document.querySelectorAll(".section-link");
-    let isClickScrolling = false;
-
-    const sectionNames = {
-        "intro": "01 / INTRO",
-        "who-i-am": "02 / WHO I AM",
-        "what-i-build": "03 / WHAT I BUILD",
-        "how-i-think": "04 / HOW I THINK",
-        "current-focus": "05 / CURRENT FOCUS",
-        "journey": "06 / MY JOURNEY",
-        "whats-next": "07 / WHAT'S NEXT"
+    // 4. Scroll Reveal Animations
+    const observerOptions = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.15
     };
 
-    const headerIndex = document.querySelector(".header-index");
+    const revealElements = document.querySelectorAll(".approach-card, .exploring-item, .cta-container");
 
-    /* Section enter accent line observer */
-    const sectionEnterObserver = new IntersectionObserver(
-        entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("section-entered");
-                }
-            });
-        },
-        { threshold: 0.15 }
-    );
-
-    sections.forEach(section => {
-        sectionEnterObserver.observe(section);
+    revealElements.forEach((el) => {
+        el.style.opacity = "0";
+        el.style.transform = "translateY(24px)";
+        el.style.transition = "opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)";
     });
 
-    function updateActiveSection() {
-        if (isClickScrolling) return;
-
-        const scrollPosition = window.scrollY + 140;
-        let currentSectionId = "";
-
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
-
-            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                currentSectionId = section.id;
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
+                }, index * 80);
+                observer.unobserve(entry.target);
             }
         });
+    }, observerOptions);
 
-        if (!currentSectionId && sections.length > 0) {
-            if (window.scrollY < 100) {
-                currentSectionId = sections[0].id;
-            } else if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
-                currentSectionId = sections[sections.length - 1].id;
-            }
-        }
+    revealElements.forEach((el) => revealObserver.observe(el));
 
-        if (currentSectionId) {
-            sectionLinks.forEach(link => {
-                const targetHash = link.getAttribute("href");
-                if (targetHash === `#${currentSectionId}`) {
-                    link.classList.add("active");
-                } else {
-                    link.classList.remove("active");
-                }
-            });
-
-            if (headerIndex && sectionNames[currentSectionId] && headerIndex.textContent !== sectionNames[currentSectionId]) {
-                headerIndex.textContent = sectionNames[currentSectionId];
-                headerIndex.style.animation = 'none';
-                void headerIndex.offsetWidth;
-                headerIndex.style.animation = 'headerIndexPulse 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
-            }
-        }
+    // 5. Dynamic Footer Year
+    const yearSpan = document.getElementById("year");
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
     }
-
-    window.addEventListener("scroll", updateActiveSection, { passive: true });
-    updateActiveSection();
-
-    /* =====================================================
-       SMOOTH SECTION NAVIGATION WITH HEADER OFFSET
-    ===================================================== */
-
-    sectionLinks.forEach(link => {
-        link.addEventListener("click", event => {
-            event.preventDefault();
-
-            const targetId = link.getAttribute("href");
-            const target = document.querySelector(targetId);
-
-            if (!target) return;
-
-            sectionLinks.forEach(l => l.classList.remove("active"));
-            link.classList.add("active");
-
-            isClickScrolling = true;
-            const headerOffset = 70;
-            const elementPosition = target.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.scrollY - headerOffset;
-
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: "smooth"
-            });
-
-            setTimeout(() => {
-                isClickScrolling = false;
-                updateActiveSection();
-            }, 800);
-        });
-    });
-
-
-    /* =====================================================
-       IMAGE PARALLAX & MOUSE TILT
-    ===================================================== */
-
-    const heroImage =
-        document.querySelector(".hero-image");
-
-    const hero =
-        document.querySelector(".hero-section");
-
-    let mouseX = 0;
-    let mouseY = 0;
-
-    function updateHeroTransform() {
-        if (!heroImage) return;
-        const scroll = window.scrollY;
-        const scrollOffset = scroll < window.innerHeight ? scroll * 0.08 : 0;
-        heroImage.style.transform = `translate(${mouseX * 10}px, ${scrollOffset + mouseY * 8}px)`;
-    }
-
-    if (heroImage) {
-        window.addEventListener(
-            "scroll",
-            updateHeroTransform,
-            { passive: true }
-        );
-    }
-
-    if (
-        hero &&
-        window.matchMedia("(pointer:fine)").matches
-    ) {
-        hero.addEventListener("mousemove", event => {
-            mouseX = (event.clientX / window.innerWidth - 0.5);
-            mouseY = (event.clientY / window.innerHeight - 0.5);
-            updateHeroTransform();
-        });
-    }
-
 });

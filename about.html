@@ -2,944 +2,243 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="About A.V. Himaaneesh Reddy — Computer Science student, software engineering, and AI/ML." />
+    <title>About — A.V. Himaaneesh Reddy</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta name="description" content="About Himaaneesh — a Computer Science student, builder and continuous learner.">
-
-    <title>About — Himaaneesh</title>
-    <link rel="stylesheet" href="about.css">
-
-        <!-- Google Fonts Typography System -->
-        <!-- Google Fonts Typography System -->
+    <!-- Google Fonts Typography System -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+    <!-- About Page CSS -->
+    <link rel="stylesheet" href="./about.css" />
 </head>
 
 <body>
 
-    <!-- =====================================================
-         PAGE TRANSITION
-    ====================================================== -->
-
-    <div class="page-transition" aria-hidden="true">
-        <div class="transition-line"></div>
+    <!-- Page Loader -->
+    <div class="page-loader" id="pageLoader" aria-hidden="true">
+        <div class="loader-line"></div>
     </div>
 
+    <!-- Background Noise / Grain Overlay -->
+    <div class="grain-overlay" aria-hidden="true"></div>
 
-    <!-- =====================================================
-         GRAIN
-    ====================================================== -->
-
-    <div class="noise"></div>
-
-
-    <!-- =====================================================
-         NAVIGATION
-    ====================================================== -->
-
-    <header class="about-header">
-
-        <a href="index.html" class="brand transition-link">
-            HIMAANEESH REDDY
+    <!-- Header Navigation -->
+    <header class="site-header">
+        <a href="./index.html" class="brand" aria-label="Himaaneesh Reddy Home">
+            <span class="brand-dot"></span>
+            <span>A.V.HIMAANEESH REDDY</span>
         </a>
 
-        <div class="header-index">
-            01 / ABOUT
-        </div>
-
-        <a href="skills.html" class="build-button transition-link">
-            <span class="button-dot"></span>
-            SKILLS
-            <span class="button-arrow">→</span>
-        </a>
-
+        <nav class="top-nav" aria-label="Primary navigation">
+            <a href="./about.html" class="active" aria-current="page">ABOUT</a>
+            <a href="./projects.html">PROJECTS</a>
+            <a href="./skills.html">SKILLS</a>
+            <a href="./contact.html">CONTACT</a>
+        </nav>
     </header>
 
-    <!-- =====================================================
-     FIXED ABOUT SECTION NAVIGATION
-     ===================================================== -->
+    <main class="about-main">
 
-    <nav class="section-index" aria-label="About page sections">
+        <!-- =========================================================
+             1. HERO SECTION
+        ========================================================= -->
+        <section class="about-hero" id="hero">
+            <!-- Atmospheric Red Glow behind Portrait -->
+            <div class="hero-red-atmosphere" aria-hidden="true"></div>
 
-        <a href="#intro" class="section-link active">
-            <span>INTRO</span>
-        </a>
+            <div class="hero-container">
+                <!-- HERO LEFT: Typography & Identity -->
+                <div class="hero-left">
+                    <div class="section-kicker">
+                        <span class="kicker-number">01</span>
+                        <span class="kicker-divider"></span>
+                        <span class="kicker-label">ABOUT</span>
+                    </div>
 
-        <a href="#who-i-am" class="section-link">
-            <span>WHO I AM</span>
-        </a>
+                    <h1 class="hero-heading">
+                        <span class="heading-line-1">I BUILD</span>
+                        <span class="heading-line-2">TO <em class="accent-red">SOLVE.</em></span>
+                    </h1>
 
-        <a href="#what-i-build" class="section-link">
-            <span>WHAT I BUILD</span>
-        </a>
+                    <div class="identity-block">
+                        <h2 class="identity-name">A.V. HIMAANEESH REDDY</h2>
+                        <p class="identity-role">SECOND-YEAR COMPUTER SCIENCE STUDENT</p>
+                        <p class="identity-focus">SOFTWARE ENGINEERING &nbsp;&middot;&nbsp; AI / ML</p>
+                    </div>
 
-        <a href="#how-i-think" class="section-link">
-            <span>HOW I THINK</span>
-        </a>
-
-        <a href="#current-focus" class="section-link">
-            <span>CURRENT FOCUS</span>
-        </a>
-
-        <a href="#journey" class="section-link">
-            <span>MY JOURNEY</span>
-        </a>
-
-        <a href="#whats-next" class="section-link">
-            <span>WHAT'S NEXT</span>
-        </a>
-
-    </nav>
-
-
-    <!-- =====================================================
-         LEFT NAV
-    ====================================================== -->
-
-    <nav class="side-navigation">
-
-        <a href="index.html" class="transition-link">
-            HOME
-        </a>
-
-        <a href="#intro" class="active">
-            ABOUT
-        </a>
-
-        <a href="projects.html" class="transition-link">
-            PROJECTS
-        </a>
-
-        <a href="skills.html" class="transition-link">
-            SKILLS
-        </a>
-
-        <a href="contact.html" class="transition-link">
-            CONTACT
-        </a>
-
-    </nav>
-
-
-    <!-- =====================================================
-         MAIN
-    ====================================================== -->
-
-    <main>
-
-
-        <!-- =================================================
-             01 — INTRO
-        ================================================== -->
-
-        <section class="about-section hero-section" id="intro">
-
-            <div class="hero-background-number">
-                01
-            </div>
-
-
-            <div class="hero-content">
-
-                <div class="section-number">
-                    01 / INTRO
-                </div>
-
-
-                <h1 class="hero-title reveal">
-
-                    <span>HEY, I'M</span>
-
-                    <strong>HIMAANEESH.</strong>
-
-                </h1>
-
-
-                <div class="hero-subtitle reveal">
-
-                    <span>A SOPHOMORE.</span>
-                    <span>A BUILDER.</span>
-                    <span>A WORK IN PROGRESS.</span>
-
-                </div>
-
-
-                <div class="hero-description reveal">
-
-                    <div class="red-line"></div>
-
-                    <p>
-                        I'm a Computer Science student who loves
-                        creating websites, web applications and
-                        AI solutions — with a strong focus on
-                        design, user experience and real-world impact.
+                    <p class="hero-paragraph">
+                        I’m interested in turning real-world problems into thoughtful, practical solutions. I enjoy understanding how things work, collaborating with people, and building at the intersection of software engineering, web development and artificial intelligence. I’m a continuous learner, always exploring, building and improving.
                     </p>
 
+                    <button class="scroll-trigger" id="scrollTrigger" data-scroll-target="#approach" aria-label="Scroll to explore my approach">
+                        <span class="scroll-indicator">
+                            <span class="scroll-arrow">↓</span>
+                        </span>
+                        <span class="scroll-text">SCROLL TO EXPLORE</span>
+                    </button>
                 </div>
 
-
-                <div class="hero-philosophy reveal">
-
-                    <span>HARD WORK</span>
-
-                    <b>&gt;</b>
-
-                    <span>FATE.</span>
-
+                <!-- HERO RIGHT: Actual Portrait Image Anchor -->
+                <div class="hero-right">
+                    <div class="portrait-stage" id="portraitStage">
+                        <div class="portrait-glow-layer" aria-hidden="true"></div>
+                        <div class="portrait-image-wrap">
+                            <img src="About_Page_Image.png" alt="Portrait of A.V. Himaaneesh Reddy" class="portrait-img" id="heroPortrait" />
+                            <div class="portrait-vignette" aria-hidden="true"></div>
+                        </div>
+                        <div class="portrait-accent-line" aria-hidden="true"></div>
+                    </div>
                 </div>
-
             </div>
-
-            <!-- IMAGE -->
-            <div class="hero-image-wrapper">
-
-                <div class="image-glow"></div>
-
-                <img src="./assets/images/about_page_image.png" alt="Himaaneesh — About" class="hero-image">
-
-            </div>
-
-
-            <div class="scroll-indicator">
-                <span>SCROLL</span>
-                <i></i>
-                <b>•</b>
-            </div>
-
         </section>
 
 
-        <!-- =================================================
-             02 — WHO I AM
-        ================================================== -->
-
-        <section class="about-section split-section" id="who-i-am">
-
-            <div class="section-label">
-                WHO I AM / 02
-            </div>
-
-            <div class="section-number-large">
-                02
-            </div>
-
-            <div class="section-copy">
-
-                <h2 class="display-heading reveal">
-                    CURIOUS BY NATURE.
-                    <br>
-                    <em>DRIVEN BY PROGRESS.</em>
-                </h2>
-
-                <p class="body-copy reveal">
-                    I'm a second-year Computer Science student
-                    who enjoys creating, experimenting, and
-                    bringing ideas to life through technology.
-                </p>
-
-                <p class="body-copy reveal">
-                    I was drawn to Computer Science because I
-                    enjoy creating websites, connecting different
-                    pieces together, and finding better ways to
-                    communicate ideas through digital experiences.
-                </p>
-
-                <p class="body-copy reveal">
-                    The rapid rise of AI changed the way I look
-                    at technology. It pushed me to explore beyond
-                    what I already knew and made me more curious
-                    about what is possible.
-                </p>
-
-            </div>
-
-
-            <div class="core-values reveal">
-
-                <span>AT MY CORE</span>
-
-                <div>
-                    <strong>GENUINE.</strong>
-                    <strong>HARDWORKING.</strong>
-                    <strong>COMPETITIVE.</strong>
+        <!-- =========================================================
+             2. MY APPROACH SECTION
+        ========================================================= -->
+        <section class="approach-section" id="approach">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="mono-kicker">MY APPROACH</span>
+                    <h2 class="section-title">HOW I <span class="accent-red">WORK.</span></h2>
                 </div>
 
-                <p>
-                    I value genuine relationships, healthy
-                    competition, and constantly becoming better
-                    than I was yesterday.
-                </p>
-
-            </div>
-
-
-            <div class="life-values">
-
-                <span>WHAT MATTERS TO ME</span>
-
-                <div class="life-grid">
-
-                    <article>
-                        <small>01</small>
-                        <h3>HEALTH</h3>
-                        <p>
-                            Taking care of myself and staying strong.
+                <div class="approach-grid">
+                    <!-- Column 1: SOLVE -->
+                    <article class="approach-card">
+                        <div class="card-header">
+                            <span class="card-num">01</span>
+                            <span class="card-line"></span>
+                        </div>
+                        <h3 class="card-title">SOLVE</h3>
+                        <p class="card-body">
+                            I like understanding the problem first, breaking complexity into smaller pieces, and finding solutions that are practical and meaningful.
                         </p>
                     </article>
 
-                    <article>
-                        <small>02</small>
-                        <h3>FAMILY</h3>
-                        <p>
-                            The people who matter beyond everything else.
+                    <!-- Column 2: COLLABORATE -->
+                    <article class="approach-card">
+                        <div class="card-header">
+                            <span class="card-num">02</span>
+                            <span class="card-line"></span>
+                        </div>
+                        <h3 class="card-title">COLLABORATE</h3>
+                        <p class="card-body">
+                            I enjoy working with people, sharing ideas, challenging assumptions, and building better solutions together.
                         </p>
                     </article>
 
-                    <article>
-                        <small>03</small>
-                        <h3>HAPPINESS</h3>
-                        <p>
-                            Building a life that feels meaningful.
+                    <!-- Column 3: LEARN -->
+                    <article class="approach-card">
+                        <div class="card-header">
+                            <span class="card-num">03</span>
+                            <span class="card-line"></span>
+                        </div>
+                        <h3 class="card-title">LEARN</h3>
+                        <p class="card-body">
+                            I don't expect to know everything. I stay curious, learn through building, and keep improving with every problem.
                         </p>
                     </article>
-
                 </div>
-
             </div>
-
         </section>
 
 
-        <!-- =================================================
-             03 — WHAT I BUILD
-        ================================================== -->
+        <!-- =========================================================
+             3. CURRENTLY EXPLORING
+        ========================================================= -->
+        <section class="exploring-section" id="exploring">
+            <div class="section-container">
+                <div class="section-header header-inline">
+                    <span class="mono-kicker">CURRENTLY EXPLORING</span>
+                    <span class="header-rule"></span>
+                </div>
 
-        <section class="about-section build-section" id="what-i-build">
+                <div class="exploring-list">
+                    <!-- Item 1 -->
+                    <div class="exploring-item">
+                        <span class="item-num">01</span>
+                        <div class="item-content">
+                            <h3 class="item-title">SOFTWARE ENGINEERING</h3>
+                            <span class="item-accent"></span>
+                        </div>
+                    </div>
 
-            <div class="section-label">
-                WHAT I BUILD / 03
+                    <!-- Item 2 -->
+                    <div class="exploring-item">
+                        <span class="item-num">02</span>
+                        <div class="item-content">
+                            <h3 class="item-title">WEB DEVELOPMENT</h3>
+                            <span class="item-accent"></span>
+                        </div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="exploring-item">
+                        <span class="item-num">03</span>
+                        <div class="item-content">
+                            <h3 class="item-title">ARTIFICIAL INTELLIGENCE</h3>
+                            <span class="item-accent"></span>
+                        </div>
+                    </div>
+
+                    <!-- Item 4 -->
+                    <div class="exploring-item">
+                        <span class="item-num">04</span>
+                        <div class="item-content">
+                            <h3 class="item-title">MACHINE LEARNING</h3>
+                            <span class="item-accent"></span>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <div class="section-number-large">
-                03
-            </div>
-
-            <div class="center-heading">
-
-                <h2 class="display-heading reveal">
-                    IDEAS INTO
-                    <br>
-                    <em>EXPERIENCES.</em>
-                </h2>
-
-                <p class="body-copy reveal">
-                    I enjoy turning ideas into websites,
-                    web applications and AI-powered experiences.
-                    For me, building isn't only about making
-                    something work — it's about making it feel
-                    intuitive, purposeful and worth using.
-                </p>
-
-            </div>
-
-
-            <div class="build-grid">
-
-                <article class="build-card reveal">
-
-                    <span>01</span>
-
-                    <h3>
-                        WEB
-                        <br>
-                        EXPERIENCES
-                    </h3>
-
-                    <p>
-                        Visual design and user experience come
-                        first. Every interface should communicate
-                        clearly and feel natural to use.
-                    </p>
-
-                </article>
-
-
-                <article class="build-card reveal">
-
-                    <span>02</span>
-
-                    <h3>
-                        WEB
-                        <br>
-                        APPLICATIONS
-                    </h3>
-
-                    <p>
-                        Taking an idea from its first concept
-                        to a complete working application while
-                        continuously expanding my limits.
-                    </p>
-
-                </article>
-
-
-                <article class="build-card reveal">
-
-                    <span>03</span>
-
-                    <h3>
-                        AI &
-                        <br>
-                        REAL-WORLD
-                        <br>
-                        IDEAS
-                    </h3>
-
-                    <p>
-                        Exploring practical ways technology and
-                        AI can make complicated problems easier
-                        to understand and solve.
-                    </p>
-
-                </article>
-
-            </div>
-
-
-            <div class="limit-statement reveal">
-
-                <span>MY RULE</span>
-
-                <h3>
-                    EVERY PROJECT SHOULD
-                    <br>
-                    <em>EXPAND MY LIMITS.</em>
-                </h3>
-
-            </div>
-
         </section>
 
 
-        <!-- =================================================
-             04 — HOW I THINK
-        ================================================== -->
-
-        <section class="about-section thinking-section" id="how-i-think">
-
-            <div class="section-label">
-                HOW I THINK / 04
-            </div>
-
-            <div class="section-number-large">
-                04
-            </div>
-
-
-            <div class="thinking-heading">
-
-                <h2 class="display-heading reveal">
-                    I DON'T FEAR
-                    <br>
-                    <em>NOT KNOWING.</em>
-                </h2>
-
-                <p class="body-copy reveal">
-                    When I don't know how to build something,
-                    I learn from people who have already explored
-                    it, study existing approaches, and use the
-                    resources available to move forward.
-                </p>
-
-            </div>
-
-
-            <div class="failure-block reveal">
-
-                <div class="failure-title">
-                    WHEN SOMETHING
-                    <br>
-                    <em>BREAKS,</em>
-                </div>
-
-                <div class="failure-answer">
-                    <span>I GET CURIOUS.</span>
-
-                    <p>
-                        A failed attempt usually means there is
-                        something I don't understand yet.
+        <!-- =========================================================
+             4. FINAL CTA
+        ========================================================= -->
+        <section class="skills-cta-section" id="cta">
+            <div class="cta-glow-bg" aria-hidden="true"></div>
+            <div class="section-container cta-container">
+                <div class="cta-text-wrapper">
+                    <h2 class="cta-heading">
+                        EXPLORE MY<br>
+                        <span class="accent-red">SKILLS.</span>
+                    </h2>
+                    <p class="cta-subtext">
+                        A closer look at the technologies, tools and foundations I’m building with.
                     </p>
                 </div>
 
-            </div>
-
-
-            <div class="learning-loop reveal">
-
-                <div>EXPLORE</div>
-                <span>→</span>
-
-                <div>BUILD</div>
-                <span>→</span>
-
-                <div>FAIL</div>
-                <span>→</span>
-
-                <div>LEARN</div>
-                <span>→</span>
-
-                <div>IMPROVE</div>
-
-            </div>
-
-
-            <div class="commitment">
-
-                <div class="commitment-small">
-                    MY PHILOSOPHY
+                <div class="cta-action">
+                    <a href="skills.html" class="skills-cta-btn">
+                        <span>VIEW MY SKILLS</span>
+                        <span class="btn-arrow">&rarr;</span>
+                    </a>
                 </div>
-
-                <h3 class="reveal">
-                    HARD WORK ISN'T
-                    <br>
-                    ABOUT HOW MUCH
-                    <br>
-                    YOU <em>SUFFER.</em>
-                </h3>
-
-                <h4 class="reveal">
-                    IT'S ABOUT HOW MUCH
-                    <br>
-                    YOU COMMIT.
-                </h4>
-
-                <div class="fate-line">
-                    HARD WORK <span>&gt;</span> FATE.
-                </div>
-
             </div>
-
-        </section>
-
-
-        <!-- =================================================
-             05 — CURRENT FOCUS
-        ================================================== -->
-
-        <section class="about-section focus-section" id="current-focus">
-
-            <div class="section-label">
-                CURRENTLY / 05
-            </div>
-
-            <div class="section-number-large">
-                05
-            </div>
-
-
-            <div class="focus-heading">
-
-                <h2 class="display-heading reveal">
-                    ALWAYS LEARNING.
-                    <br>
-                    <em>ALWAYS UPGRADING.</em>
-                </h2>
-
-            </div>
-
-
-            <div class="focus-intro reveal">
-
-                <p>
-                    Right now, I'm developing across three
-                    areas in parallel — Data Structures &
-                    Algorithms, AI/ML and Full-Stack Development.
-                </p>
-
-            </div>
-
-
-            <div class="focus-grid">
-
-                <article class="focus-card reveal">
-
-                    <span>01</span>
-
-                    <h3>
-                        DATA STRUCTURES
-                        <br>
-                        & ALGORITHMS
-                    </h3>
-
-                    <p>
-                        Building strong problem-solving and
-                        algorithmic thinking through consistent
-                        practice.
-                    </p>
-
-                </article>
-
-
-                <article class="focus-card reveal">
-
-                    <span>02</span>
-
-                    <h3>
-                        AI /
-                        <br>
-                        MACHINE LEARNING
-                    </h3>
-
-                    <p>
-                        Exploring AI and machine learning while
-                        staying aware of rapidly changing technology.
-                    </p>
-
-                </article>
-
-
-                <article class="focus-card reveal">
-
-                    <span>03</span>
-
-                    <h3>
-                        FULL-STACK
-                        <br>
-                        DEVELOPMENT
-                    </h3>
-
-                    <p>
-                        Learning to take ideas from interface
-                        to functional applications while improving
-                        user experience.
-                    </p>
-
-                </article>
-
-            </div>
-
-
-            <div class="depth-statement reveal">
-
-                <p>
-                    I DON'T WANT
-                    <br>
-                    TO KNOW EVERYTHING.
-                </p>
-
-                <strong>
-                    I WANT TO KNOW
-                    <br>
-                    WHAT I KNOW —
-                    <em>DEEPLY.</em>
-                </strong>
-
-            </div>
-
-
-            <div class="foundation-line">
-                SOLID FOUNDATIONS
-                <span>•</span>
-                REAL PROJECTS
-                <span>•</span>
-                CONTINUOUS ADAPTATION
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             06 — JOURNEY
-        ================================================== -->
-
-        <section class="about-section journey-section" id="journey">
-
-            <div class="section-label">
-                THE JOURNEY / 06
-            </div>
-
-            <div class="section-number-large">
-                06
-            </div>
-
-
-            <div class="journey-heading">
-
-                <h2 class="display-heading reveal">
-                    FROM NOT KNOWING
-                    <br>
-                    TO <em>BUILDING.</em>
-                </h2>
-
-            </div>
-
-
-            <div class="timeline">
-
-                <article class="timeline-item reveal">
-
-                    <div class="timeline-number">
-                        01
-                    </div>
-
-                    <div class="timeline-content">
-
-                        <small>DAY ONE</small>
-
-                        <h3>
-                            I DIDN'T EVEN KNOW
-                            <br>
-                            WHAT HELLO WORLD MEANT.
-                        </h3>
-
-                        <p>
-                            When I started my B.Tech journey,
-                            computers and programming were almost
-                            completely new territory for me.
-                        </p>
-
-                    </div>
-
-                </article>
-
-
-                <article class="timeline-item reveal">
-
-                    <div class="timeline-number">
-                        02
-                    </div>
-
-                    <div class="timeline-content">
-
-                        <small>THE FIRST QUESTION</small>
-
-                        <h3>
-                            WHY DO
-                            <br>
-                            WE CODE?
-                        </h3>
-
-                        <p>
-                            I started questioning how programming
-                            languages communicate with computers
-                            and why we need them in the first place.
-                        </p>
-
-                    </div>
-
-                </article>
-
-
-                <article class="timeline-item reveal">
-
-                    <div class="timeline-number">
-                        03
-                    </div>
-
-                    <div class="timeline-content">
-
-                        <small>THE FIRST PROGRAM</small>
-
-                        <h3>
-                            HELLO WORLD
-                            <br>
-                            — PYTHON.
-                        </h3>
-
-                        <p>
-                            That simple first program opened the
-                            door to a much larger world.
-                        </p>
-
-                    </div>
-
-                </article>
-
-
-                <article class="timeline-item reveal">
-
-                    <div class="timeline-number">
-                        04
-                    </div>
-
-                    <div class="timeline-content">
-
-                        <small>THE CURIOSITY</small>
-
-                        <h3>
-                            PUZZLES.
-                            <br>
-                            PATTERNS.
-                            <br>
-                            PROBLEM SOLVING.
-                        </h3>
-
-                        <p>
-                            Solving patterns and puzzles made
-                            programming feel exciting and pushed
-                            me to explore further.
-                        </p>
-
-                    </div>
-
-                </article>
-
-
-                <article class="timeline-item reveal">
-
-                    <div class="timeline-number">
-                        05
-                    </div>
-
-                    <div class="timeline-content">
-
-                        <small>TODAY</small>
-
-                        <h3>
-                            STILL LEARNING.
-                            <br>
-                            STILL BUILDING.
-                        </h3>
-
-                        <p>
-                            From my first lines of code to websites,
-                            applications and AI projects, the journey
-                            continues.
-                        </p>
-
-                    </div>
-
-                </article>
-
-            </div>
-
-
-            <div class="calm-statement reveal">
-
-                <span>BEYOND TECHNOLOGY</span>
-
-                <h3>
-                    STAY CALM.
-                    <br>
-                    THINK CLEARLY.
-                    <br>
-                    <em>KEEP MOVING.</em>
-                </h3>
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             07 — WHAT'S NEXT
-        ================================================== -->
-
-        <section class="about-section next-section" id="whats-next">
-
-            <div class="section-label">
-                WHAT'S NEXT / 07
-            </div>
-
-            <div class="section-number-large">
-                07
-            </div>
-
-
-            <div class="next-heading">
-
-                <h2 class="massive-heading reveal">
-                    THERE IS
-                    <br>
-                    NO
-                    <br>
-                    <em>FINISH LINE.</em>
-                </h2>
-
-            </div>
-
-
-            <div class="next-copy reveal">
-
-                <p>
-                    I don't want to define my future by a single
-                    destination. Technology changes, industries
-                    evolve, and there will always be something new
-                    to learn.
-                </p>
-
-                <p>
-                    I want to stay adaptable, use AI and emerging
-                    technology to multiply my productivity, and
-                    build things that create meaningful value.
-                </p>
-
-                <p>
-                    In the future, I want to explore technology
-                    that can support sustainable agriculture and
-                    the people who depend on it.
-                </p>
-
-            </div>
-
-
-            <div class="better-statement reveal">
-
-                <span>THE ONLY BENCHMARK</span>
-
-                <h3>
-                    BETTER THAN
-                    <br>
-                    <em>YESTERDAY.</em>
-                </h3>
-
-            </div>
-
-
-            <div class="promise reveal">
-
-                <small>THE PROMISE</small>
-
-                <p>
-                    I want to be remembered as someone who didn't
-                    give up when things became difficult — someone
-                    strong enough to keep moving forward.
-                </p>
-
-                <h4>
-                    I WILL DO EVERYTHING
-                    <br>
-                    I CAN FOR THE PROMISE
-                    <br>
-                    I GAVE MY MOTHER.
-                </h4>
-
-            </div>
-
-
-            <div class="final-line">
-
-                NO FINISH LINE.
-                <span>JUST THE NEXT STEP.</span>
-
-            </div>
-
         </section>
 
     </main>
 
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                &copy; <span id="year">2026</span> A.V. HIMAANEESH REDDY
+            </div>
+            <div class="footer-tag">
+                SOFTWARE ENGINEERING &bull; AI / ML
+            </div>
+        </div>
+    </footer>
 
-    <!-- =====================================================
-         SCRIPT
-    ====================================================== -->
-
-
-    <script src="about.js"></script>
-
+    <!-- About Page Script -->
+    <script src="./about.js"></script>
 </body>
 
 </html>
