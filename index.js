@@ -99,21 +99,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /* =========================================================
    CINEMATIC PORTFOLIO INTRO
-   L → R → L → R → CENTER → OUTWARD REVEAL → ENTER
+   SEQUENCE:
+   1. LEFT → RIGHT (Small localized light window over typography)
+   2. RIGHT → LEFT
+   3. LEFT → RIGHT
+   4. RIGHT → CENTER
+   5. STOP AT CENTER & HOLD
+   6. CENTER-OUTWARD FULL NAME REVEAL
+   7. LIGHT SOFTLY FADES OUT
+   8. EDITORIAL INVITATION ("EXPLORE THE WORK") ENTERS
+   9. CLICK → EXIT & REVEAL HOMEPAGE HERO
    ========================================================= */
 
 (function () {
 
     const intro = document.getElementById("portfolioIntro");
     const light = document.getElementById("introLight");
+    const nameWrap = document.querySelector(".intro-name-wrap");
     const nameMask = document.querySelector(".intro-name-mask");
     const enterButton = document.getElementById("introEnter");
 
-    if (!intro || !light || !nameMask || !enterButton) {
+    if (!intro || !light || !nameMask || !enterButton || !nameWrap) {
         return;
     }
 
-    /* If user has already seen the intro during this browser session, bypass instantly */
+    /* Bypass intro if user has already seen it in this session */
     if (sessionStorage.getItem("hasSeenIntro") === "true") {
         intro.remove();
         return;
@@ -128,13 +138,18 @@ document.addEventListener("DOMContentLoaded", () => {
             : 1 - Math.pow(-2 * t + 2, 3) / 2;
     }
 
-    function setBeam(position) {
+    function setBeam(screenX) {
+        const wrapRect = nameWrap.getBoundingClientRect();
+        const relativeX = screenX - wrapRect.left;
+
         light.style.opacity = "1";
-        light.style.transform = `translateX(${position}vw) rotate(8deg)`;
-        nameMask.style.setProperty("--reveal-position", `${position}%`);
+        light.style.transform = `translateX(${relativeX}px)`;
+
+        nameMask.style.setProperty("--reveal-x", `${relativeX}px`);
+        nameMask.style.setProperty("--reveal-w", "85px");
     }
 
-    function sweep(from, to) {
+    function sweep(fromX, toX) {
         return new Promise(resolve => {
             const start = performance.now();
 
@@ -142,9 +157,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 const elapsed = now - start;
                 const rawProgress = Math.min(elapsed / SWEEP_TIME, 1);
                 const progress = easeInOutCubic(rawProgress);
-                const position = from + (to - from) * progress;
+                const currentX = fromX + (toX - fromX) * progress;
 
-                setBeam(position);
+                setBeam(currentX);
 
                 if (rawProgress < 1) {
                     requestAnimationFrame(frame);
@@ -157,40 +172,89 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    function expandCenterReveal() {
+        return new Promise(resolve => {
+            const start = performance.now();
+            const DURATION = 1300;
+            const maskRect = nameMask.getBoundingClientRect();
+            const centerX = maskRect.width / 2;
+            const targetWidth = Math.max(maskRect.width * 1.5, 1800);
+
+            nameMask.style.setProperty("--reveal-x", `${centerX}px`);
+
+            /* Softly fade out localized light window as reveal reaches completion */
+            setTimeout(() => {
+                if (light) light.style.opacity = "0";
+            }, 500);
+
+            function frame(now) {
+                const elapsed = now - start;
+                const rawProgress = Math.min(elapsed / DURATION, 1);
+                const progress = easeInOutCubic(rawProgress);
+                const currentW = 85 + (targetWidth - 85) * progress;
+
+                nameMask.style.setProperty("--reveal-w", `${currentW}px`);
+
+                if (rawProgress < 1) {
+                    requestAnimationFrame(frame);
+                } else {
+                    /* Unmask completely so text stays 100% visible */
+                    nameMask.style.maskImage = "none";
+                    nameMask.style.webkitMaskImage = "none";
+                    resolve();
+                }
+            }
+
+            requestAnimationFrame(frame);
+        });
+    }
+
     async function startIntro() {
+        const winW = window.innerWidth;
+        const wrapRect = nameWrap.getBoundingClientRect();
+        
+        const leftOffscreen = (wrapRect.width > 0 && wrapRect.left > 0) ? wrapRect.left - 180 : -180;
+        const rightOffscreen = (wrapRect.width > 0 && wrapRect.right > 0) ? wrapRect.right + 180 : winW + 180;
+        const centerPos = (wrapRect.width > 0 && wrapRect.left > 0) ? wrapRect.left + wrapRect.width / 2 : winW / 2;
+
+        /* Initial state: Beam offscreen, name 100% hidden */
+        nameMask.style.setProperty("--reveal-x", "-500px");
+        nameMask.style.setProperty("--reveal-w", "85px");
 
         /* Initial pause for black/red atmosphere */
         await new Promise(resolve => setTimeout(resolve, 400));
 
-        /* 1. LEFT → RIGHT */
-        await sweep(-15, 115);
+        /* PHASE 1: LEFT → RIGHT */
+        await sweep(leftOffscreen, rightOffscreen);
         await new Promise(resolve => setTimeout(resolve, 150));
 
-        /* 2. RIGHT → LEFT */
-        await sweep(115, -15);
+        /* PHASE 2: RIGHT → LEFT */
+        await sweep(rightOffscreen, leftOffscreen);
         await new Promise(resolve => setTimeout(resolve, 150));
 
-        /* 3. LEFT → RIGHT */
-        await sweep(-15, 115);
+        /* PHASE 3: LEFT → RIGHT */
+        await sweep(leftOffscreen, rightOffscreen);
         await new Promise(resolve => setTimeout(resolve, 150));
 
-        /* 4. RIGHT → CENTER */
-        await sweep(115, 50);
+        /* PHASE 4: RIGHT → CENTER */
+        await sweep(rightOffscreen, centerPos);
 
-        /* 5. CENTER HOLD & OUTWARD REVEAL */
+        /* PHASE 5 & 6: STOP AT CENTER & HOLD */
         intro.classList.add("center-stopped");
-        nameMask.style.setProperty("--reveal-position", "50%");
-
         await new Promise(resolve => setTimeout(resolve, CENTER_PAUSE));
 
-        /* 6. SHOW ENTER BUTTON */
+        /* PHASE 7: CENTER → OUTWARD FULL NAME REVEAL */
+        await expandCenterReveal();
+
+        /* PHASE 8: EDITORIAL INVITATION APPEARS */
+        await new Promise(resolve => setTimeout(resolve, 250));
         enterButton.classList.add("visible");
     }
 
-    /* Handle Enter Button Click */
+    /* Handle Enter / Explore Invitation Click */
     let exiting = false;
 
-    enterButton.addEventListener("click", function (event) {
+    function handleExit(event) {
         if (event) {
             event.preventDefault();
             event.stopPropagation();
@@ -205,6 +269,13 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => {
             intro.remove();
         }, 1250);
+    }
+
+    enterButton.addEventListener("click", handleExit);
+    enterButton.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+            handleExit(event);
+        }
     });
 
     if (document.readyState === "loading") {

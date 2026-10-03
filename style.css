@@ -1419,40 +1419,32 @@
 
     /* =========================================================
        CINEMATIC PORTFOLIO INTRO
-       ISOLATED — DOES NOT MODIFY HERO
+       TRUE OPAQUE FULL-SCREEN CURTAIN (HERO COMPLETELY HIDDEN)
        ========================================================= */
 
     .portfolio-intro {
-      position: fixed;
-      inset: 0;
+      position: fixed !important;
+      inset: 0 !important;
+      width: 100vw !important;
+      height: 100dvh !important;
+      z-index: 999999 !important;
+      overflow: hidden !important;
 
-      width: 100vw;
-      height: 100dvh;
+      /* SOLID OPAQUE BASE BACKGROUND — HERO CANNOT SHOW THROUGH */
+      background: #050505 !important;
 
-      z-index: 999999;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
 
-      overflow: hidden;
-
-      background:
-        radial-gradient(ellipse at 50% 50%,
-          rgba(120, 0, 10, 0.28) 0%,
-          rgba(35, 2, 5, 0.68) 45%,
-          #050505 100%);
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      opacity: 1;
-      visibility: visible;
-
-      pointer-events: auto;
-
-      isolation: isolate;
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+      isolation: isolate !important;
 
       transition:
-        opacity 1.25s cubic-bezier(0.77, 0, 0.175, 1),
-        visibility 1.25s;
+        opacity 1.2s cubic-bezier(0.77, 0, 0.175, 1),
+        visibility 1.2s !important;
     }
 
     /* Red Atmosphere Glow */
@@ -1463,8 +1455,8 @@
       pointer-events: none;
       background:
         radial-gradient(ellipse at 50% 50%,
-          rgba(160, 0, 12, 0.28) 0%,
-          rgba(70, 0, 6, 0.14) 38%,
+          rgba(150, 0, 10, 0.28) 0%,
+          rgba(60, 0, 6, 0.16) 40%,
           transparent 70%);
       filter: blur(60px);
       animation: portfolioIntroAtmosphere 6s ease-in-out infinite alternate;
@@ -1473,50 +1465,12 @@
     @keyframes portfolioIntroAtmosphere {
       from {
         transform: scale(1);
-        opacity: 0.7;
+        opacity: 0.65;
       }
       to {
         transform: scale(1.12);
-        opacity: 1;
+        opacity: 0.95;
       }
-    }
-
-    /* Moving Light Beam */
-    .portfolio-intro .intro-light {
-      position: absolute;
-      top: -25%;
-      left: 0;
-      width: clamp(70px, 9vw, 150px);
-      height: 150%;
-      z-index: 5;
-      pointer-events: none;
-      opacity: 0;
-      background:
-        linear-gradient(90deg,
-          transparent 0%,
-          rgba(255, 30, 40, 0.05) 20%,
-          rgba(255, 60, 70, 0.35) 42%,
-          rgba(255, 255, 255, 0.98) 50%,
-          rgba(255, 60, 70, 0.35) 58%,
-          rgba(255, 30, 40, 0.05) 80%,
-          transparent 100%);
-      filter:
-        blur(2px)
-        drop-shadow(0 0 25px rgba(255, 30, 40, 0.65))
-        drop-shadow(0 0 65px rgba(255, 0, 0, 0.3));
-      mix-blend-mode: screen;
-    }
-
-    .portfolio-intro .intro-light::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 50%;
-      width: 2px;
-      height: 100%;
-      transform: translateX(-50%);
-      background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.9), transparent);
-      box-shadow: 0 0 12px rgba(255, 90, 90, 0.95), 0 0 35px rgba(255, 0, 0, 0.6);
     }
 
     /* Name Wrap & Mask */
@@ -1524,35 +1478,61 @@
       position: absolute;
       left: 50%;
       top: 50%;
-      width: min(92vw, 1450px);
+      width: min(90vw, 1300px);
       transform: translate(-50%, -50%);
       z-index: 4;
       pointer-events: none;
+      text-align: center;
+    }
+
+    /* SMALL LOCALIZED LIGHT WINDOW (EXISTS ONLY ACROSS TYPOGRAPHY HEIGHT) */
+    .portfolio-intro .intro-light {
+      position: absolute;
+      top: -20%;
+      bottom: -20%;
+      height: 140%;
+      left: 0;
+      width: clamp(65px, 8vw, 120px);
+      z-index: 5;
+      pointer-events: none;
+      opacity: 0;
+      background:
+        radial-gradient(ellipse at center,
+          rgba(255, 255, 255, 0.98) 0%,
+          rgba(255, 180, 185, 0.70) 25%,
+          rgba(255, 40, 50, 0.35) 55%,
+          transparent 75%);
+      filter:
+        blur(1.5px)
+        drop-shadow(0 0 16px rgba(255, 30, 40, 0.6))
+        drop-shadow(0 0 45px rgba(255, 0, 0, 0.25));
+      mix-blend-mode: screen;
+      transition: opacity 0.5s ease;
+    }
+
+    .portfolio-intro .intro-light::after {
+      content: "";
+      position: absolute;
+      top: 10%;
+      bottom: 10%;
+      left: 50%;
+      width: 2px;
+      transform: translateX(-50%);
+      background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.95), transparent);
+      box-shadow: 0 0 10px rgba(255, 80, 80, 0.9);
     }
 
     .portfolio-intro .intro-name-mask {
       position: relative;
       width: 100%;
       overflow: hidden;
-      --reveal-position: -20%;
 
-      mask-image:
-        linear-gradient(90deg,
-          transparent 0%,
-          transparent calc(var(--reveal-position) - 8%),
-          #000 calc(var(--reveal-position) - 2%),
-          #000 calc(var(--reveal-position) + 2%),
-          transparent calc(var(--reveal-position) + 8%),
-          transparent 100%);
+      /* Initial state: OFF-SCREEN (-300px), 100% HIDDEN */
+      --reveal-x: -300px;
+      --reveal-w: 80px;
 
-      -webkit-mask-image:
-        linear-gradient(90deg,
-          transparent 0%,
-          transparent calc(var(--reveal-position) - 8%),
-          #000 calc(var(--reveal-position) - 2%),
-          #000 calc(var(--reveal-position) + 2%),
-          transparent calc(var(--reveal-position) + 8%),
-          transparent 100%);
+      mask-image: radial-gradient(ellipse var(--reveal-w) 180px at var(--reveal-x) 50%, #000 0%, #000 35%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse var(--reveal-w) 180px at var(--reveal-x) 50%, #000 0%, #000 35%, transparent 100%);
 
       mask-repeat: no-repeat;
       -webkit-mask-repeat: no-repeat;
@@ -1568,15 +1548,15 @@
       text-align: center;
       white-space: nowrap;
       font-family: "Manrope", Arial, sans-serif;
-      font-size: clamp(2.2rem, 5.8vw, 6.8rem);
+      font-size: clamp(2.1rem, 5.0vw, 6.2rem);
       font-weight: 800;
       font-style: italic;
-      line-height: 0.95;
-      letter-spacing: -0.04em;
+      line-height: 1.0;
+      letter-spacing: -0.035em;
       color: #F2EEE6;
       text-shadow:
-        0 0 25px rgba(255, 255, 255, 0.12),
-        0 0 55px rgba(255, 0, 0, 0.15);
+        0 0 25px rgba(255, 255, 255, 0.10),
+        0 0 45px rgba(215, 45, 62, 0.15);
       user-select: none;
     }
 
@@ -1585,17 +1565,17 @@
       position: absolute;
       left: 50%;
       top: 50%;
-      width: min(55vw, 650px);
-      height: min(55vw, 650px);
-      transform: translate(-50%, -50%) scale(0.7);
+      width: min(45vw, 500px);
+      height: min(45vw, 500px);
+      transform: translate(-50%, -50%) scale(0.65);
       z-index: 2;
       border-radius: 50%;
       background:
         radial-gradient(circle,
-          rgba(180, 0, 15, 0.22) 0%,
-          rgba(100, 0, 10, 0.08) 45%,
+          rgba(180, 0, 15, 0.20) 0%,
+          rgba(90, 0, 8, 0.05) 45%,
           transparent 72%);
-      filter: blur(50px);
+      filter: blur(48px);
       opacity: 0;
       pointer-events: none;
       transition: opacity 1.2s ease, transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
@@ -1606,55 +1586,25 @@
       transform: translate(-50%, -50%) scale(1);
     }
 
-    /* Center Outward Reveal Animation */
-    .portfolio-intro.center-stopped .intro-name-mask {
-      animation: portfolioFullNameReveal 1.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    }
-
-    @keyframes portfolioFullNameReveal {
-      0% {
-        mask-image:
-          linear-gradient(90deg,
-            transparent 0%,
-            transparent 43%,
-            #000 48%,
-            #000 52%,
-            transparent 57%,
-            transparent 100%);
-        -webkit-mask-image:
-          linear-gradient(90deg,
-            transparent 0%,
-            transparent 43%,
-            #000 48%,
-            #000 52%,
-            transparent 57%,
-            transparent 100%);
-      }
-      100% {
-        mask-image: linear-gradient(90deg, #000 0%, #000 100%);
-        -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 100%);
-      }
-    }
-
-    /* Enter Portfolio Button */
+    /* PREMIUM PORTFOLIO INVITATION CTA */
     .portfolio-intro .intro-enter {
       position: absolute;
       left: 50%;
-      bottom: 8vh;
-      transform: translateX(-50%) translateY(20px);
+      top: calc(50% + clamp(65px, 11vh, 110px));
+      transform: translateX(-50%) translateY(16px);
       z-index: 10;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 15px;
-      padding: 0;
-      border: 0;
-      background: transparent;
-      color: #F2EEE6;
-      font-family: "Manrope", Arial, sans-serif;
+      text-align: center;
       cursor: pointer;
       opacity: 0;
       visibility: hidden;
-      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      outline: none;
+      user-select: none;
+      transition:
+        opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .portfolio-intro .intro-enter.visible {
@@ -1663,32 +1613,90 @@
       transform: translateX(-50%) translateY(0);
     }
 
-    .portfolio-intro .intro-enter-label {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.25em;
-      white-space: nowrap;
+    /* Subtle Line Accent above CTA */
+    .portfolio-intro .intro-cta-line {
+      width: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(215, 45, 62, 0.65), transparent);
+      margin-bottom: 18px;
+      transition: width 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.1s;
     }
 
-    .portfolio-intro .intro-enter-line {
-      width: 45px;
-      height: 1px;
-      background: rgba(242, 238, 230, 0.7);
-      transition: width 0.4s ease;
+    .portfolio-intro .intro-enter.visible .intro-cta-line {
+      width: 80px;
+    }
+
+    .portfolio-intro .intro-cta-main {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.8s ease 0.25s, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.25s;
+    }
+
+    .portfolio-intro .intro-enter.visible .intro-cta-main {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .portfolio-intro .intro-enter-label {
+      font-family: "Manrope", Arial, sans-serif;
+      font-size: clamp(11px, 1.0vw, 13px);
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: #F2EEE6;
+      white-space: nowrap;
+      transition: color 0.3s ease, letter-spacing 0.3s ease;
     }
 
     .portfolio-intro .intro-enter-arrow {
-      font-size: 15px;
+      font-size: 16px;
       line-height: 1;
-      transition: transform 0.4s ease;
+      color: rgba(215, 45, 62, 0.9);
+      transition: transform 0.3s ease, color 0.3s ease;
     }
 
-    .portfolio-intro .intro-enter:hover .intro-enter-line {
-      width: 68px;
+    .portfolio-intro .intro-enter-sub {
+      margin-top: 8px;
+      font-family: "Manrope", Arial, sans-serif;
+      font-size: clamp(12px, 0.9vw, 14px);
+      font-weight: 500;
+      color: rgba(215, 207, 196, 0.65);
+      letter-spacing: 0.02em;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.8s ease 0.4s, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.4s;
     }
 
-    .portfolio-intro .intro-enter:hover .intro-enter-arrow {
-      transform: translateY(5px);
+    .portfolio-intro .intro-enter.visible .intro-enter-sub {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* CTA Hover & Focus States */
+    .portfolio-intro .intro-enter:hover .intro-enter-label,
+    .portfolio-intro .intro-enter:focus-visible .intro-enter-label {
+      color: #FFFFFF;
+      letter-spacing: 0.32em;
+    }
+
+    .portfolio-intro .intro-enter:hover .intro-enter-arrow,
+    .portfolio-intro .intro-enter:focus-visible .intro-enter-arrow {
+      transform: translateX(6px);
+      color: #D72D3E;
+    }
+
+    .portfolio-intro .intro-enter:hover .intro-cta-line,
+    .portfolio-intro .intro-enter:focus-visible .intro-cta-line {
+      width: 120px;
+      background: linear-gradient(90deg, transparent, #D72D3E, transparent);
+    }
+
+    .portfolio-intro .intro-enter:hover .intro-enter-sub,
+    .portfolio-intro .intro-enter:focus-visible .intro-enter-sub {
+      color: rgba(242, 238, 230, 0.9);
     }
 
     /* Exit Transition */
@@ -1705,9 +1713,10 @@
       transition: transform 1.2s ease, filter 1.2s ease;
     }
 
-    .portfolio-intro.exit .intro-light {
+    .portfolio-intro.exit .intro-enter {
       opacity: 0;
-      transition: opacity 0.5s ease;
+      transform: translateX(-50%) translateY(-10px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
     }
 
     /* Responsive Mobile Adjustments */
@@ -1716,18 +1725,22 @@
         width: 94vw;
       }
       .portfolio-intro .intro-name {
-        font-size: clamp(1.4rem, 8vw, 3.5rem);
+        font-size: clamp(1.4rem, 7.5vw, 3.2rem);
         letter-spacing: -0.025em;
       }
       .portfolio-intro .intro-light {
-        width: 22vw;
-        min-width: 65px;
+        width: 20vw;
+        min-width: 60px;
       }
       .portfolio-intro .intro-enter {
-        bottom: 6vh;
+        top: calc(50% + clamp(55px, 9vh, 90px));
       }
       .portfolio-intro .intro-enter-label {
-        font-size: 8px;
-        letter-spacing: 0.20em;
+        font-size: 10px;
+        letter-spacing: 0.22em;
+      }
+      .portfolio-intro .intro-enter-sub {
+        font-size: 11px;
+        padding: 0 16px;
       }
     }
