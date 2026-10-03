@@ -18,11 +18,6 @@
 
 <body>
 
-    <!-- Page Loader -->
-    <div class="page-loader" id="pageLoader" aria-hidden="true">
-        <div class="loader-line"></div>
-    </div>
-
     <!-- Background Noise / Grain Overlay -->
     <div class="grain-overlay" aria-hidden="true"></div>
 
@@ -44,37 +39,48 @@
     <main class="about-main">
 
         <!-- =========================================================
-             1. HERO SECTION
+             SECTION 01: HERO
         ========================================================= -->
         <section class="about-hero" id="hero">
-            <!-- Atmospheric Red Glow behind Portrait -->
-            <div class="hero-red-atmosphere" aria-hidden="true"></div>
+            <!-- Atmospheric Red Glow Layer (Multi-depth Parallax) -->
+            <div class="hero-red-atmosphere" id="heroRedAtmosphere" aria-hidden="true"></div>
 
             <div class="hero-container">
                 <!-- HERO LEFT: Typography & Identity -->
-                <div class="hero-left">
-                    <div class="section-kicker">
+                <div class="hero-left" id="heroLeft">
+                    <div class="section-kicker reveal-item">
                         <span class="kicker-number">01</span>
                         <span class="kicker-divider"></span>
                         <span class="kicker-label">ABOUT</span>
                     </div>
 
+                    <!-- Line-by-line Masked Editorial Headline -->
                     <h1 class="hero-heading">
-                        <span class="heading-line-1">I BUILD</span>
-                        <span class="heading-line-2">TO <em class="accent-red">SOLVE.</em></span>
+                        <div class="heading-line-mask">
+                            <span class="heading-line line-1" id="headline1">I BUILD</span>
+                        </div>
+                        <div class="heading-line-mask">
+                            <span class="heading-line line-2" id="headline2">TO <em class="accent-red">SOLVE.</em></span>
+                        </div>
                     </h1>
 
-                    <div class="identity-block">
-                        <h2 class="identity-name">A.V. HIMAANEESH REDDY</h2>
-                        <p class="identity-role">SECOND-YEAR COMPUTER SCIENCE STUDENT</p>
-                        <p class="identity-focus">SOFTWARE ENGINEERING &nbsp;&middot;&nbsp; AI / ML</p>
+                    <!-- Prominent Editorial Name with Hover Underline -->
+                    <div class="identity-block reveal-item">
+                        <h2 class="identity-name" id="identityName">
+                            <span class="name-text">A.V. HIMAANEESH REDDY</span>
+                            <span class="name-underline" aria-hidden="true"></span>
+                        </h2>
+                        <div class="identity-meta">
+                            <p class="identity-role">SECOND-YEAR COMPUTER SCIENCE STUDENT</p>
+                            <p class="identity-focus">SOFTWARE ENGINEERING &nbsp;&middot;&nbsp; AI / ML</p>
+                        </div>
                     </div>
 
-                    <p class="hero-paragraph">
+                    <p class="hero-paragraph reveal-item">
                         I’m interested in turning real-world problems into thoughtful, practical solutions. I enjoy understanding how things work, collaborating with people, and building at the intersection of software engineering, web development and artificial intelligence. I’m a continuous learner, always exploring, building and improving.
                     </p>
 
-                    <button class="scroll-trigger" id="scrollTrigger" data-scroll-target="#approach" aria-label="Scroll to explore my approach">
+                    <button class="scroll-trigger reveal-item" id="scrollTrigger" data-scroll-target="#approach" aria-label="Scroll to explore my approach">
                         <span class="scroll-indicator">
                             <span class="scroll-arrow">↓</span>
                         </span>
@@ -82,66 +88,93 @@
                     </button>
                 </div>
 
-                <!-- HERO RIGHT: Actual Portrait Image Anchor -->
-                <div class="hero-right">
+                <!-- HERO RIGHT: Portrait Stage with Shutter Mask Reveal & Depth -->
+                <div class="hero-right" id="heroRight">
                     <div class="portrait-stage" id="portraitStage">
-                        <div class="portrait-glow-layer" aria-hidden="true"></div>
-                        <div class="portrait-image-wrap">
-                            <img src="About_Page_Image.png" alt="Portrait of A.V. Himaaneesh Reddy" class="portrait-img" id="heroPortrait" />
+                        <!-- Shutter Light Line Reveal -->
+                        <div class="shutter-light-line" id="shutterLight" aria-hidden="true"></div>
+                        
+                        <!-- Technical Label on Hover -->
+                        <div class="portrait-tech-tag" aria-hidden="true">
+                            <span class="tag-num">01</span>
+                            <span class="tag-text">HIMAANEESH / ABOUT</span>
+                        </div>
+
+                        <div class="portrait-image-wrap" id="portraitWrap">
+                            <img src="./assets/images/about_page_image.png" alt="Portrait of A.V. Himaaneesh Reddy" class="portrait-img" id="heroPortrait" />
                             <div class="portrait-vignette" aria-hidden="true"></div>
                         </div>
+
+                        <!-- Editorial Frame Accent Lines -->
+                        <div class="frame-line frame-top" aria-hidden="true"></div>
+                        <div class="frame-line frame-bottom" aria-hidden="true"></div>
                         <div class="portrait-accent-line" aria-hidden="true"></div>
                     </div>
                 </div>
             </div>
+
+            <!-- Inter-section Transition Exit Line -->
+            <div class="hero-exit-line" id="heroExitLine" aria-hidden="true"></div>
         </section>
 
 
         <!-- =========================================================
-             2. MY APPROACH SECTION
+             SECTION 02: MY APPROACH (Horizontal Editorial System)
         ========================================================= -->
         <section class="approach-section" id="approach">
             <div class="section-container">
                 <div class="section-header">
-                    <span class="mono-kicker">MY APPROACH</span>
+                    <div class="header-kicker">
+                        <span class="mono-kicker">02 / MY APPROACH</span>
+                        <span class="kicker-line"></span>
+                    </div>
                     <h2 class="section-title">HOW I <span class="accent-red">WORK.</span></h2>
                 </div>
 
-                <div class="approach-grid">
-                    <!-- Column 1: SOLVE -->
-                    <article class="approach-card">
-                        <div class="card-header">
-                            <span class="card-num">01</span>
-                            <span class="card-line"></span>
+                <div class="approach-editorial-list" id="approachList">
+                    <!-- Item 01: SOLVE -->
+                    <article class="approach-item approach-left" data-index="01">
+                        <div class="item-number-wrap">
+                            <span class="item-num">01</span>
+                            <span class="item-active-dot"></span>
                         </div>
-                        <h3 class="card-title">SOLVE</h3>
-                        <p class="card-body">
-                            I like understanding the problem first, breaking complexity into smaller pieces, and finding solutions that are practical and meaningful.
-                        </p>
+                        <div class="item-body">
+                            <h3 class="item-heading">SOLVE</h3>
+                            <p class="item-text">
+                                I like understanding the problem first, breaking complexity into smaller pieces, and finding solutions that are practical and meaningful.
+                            </p>
+                        </div>
+                        <span class="item-hover-bar" aria-hidden="true"></span>
                     </article>
 
-                    <!-- Column 2: COLLABORATE -->
-                    <article class="approach-card">
-                        <div class="card-header">
-                            <span class="card-num">02</span>
-                            <span class="card-line"></span>
+                    <!-- Item 02: COLLABORATE -->
+                    <article class="approach-item approach-right" data-index="02">
+                        <div class="item-number-wrap">
+                            <span class="item-num">02</span>
+                            <span class="item-active-dot"></span>
                         </div>
-                        <h3 class="card-title">COLLABORATE</h3>
-                        <p class="card-body">
-                            I enjoy working with people, sharing ideas, challenging assumptions, and building better solutions together.
-                        </p>
+                        <div class="item-body">
+                            <h3 class="item-heading">COLLABORATE</h3>
+                            <p class="item-text">
+                                I enjoy working with people, sharing ideas, challenging assumptions, and building better solutions together.
+                            </p>
+                        </div>
+                        <span class="item-hover-bar" aria-hidden="true"></span>
                     </article>
 
-                    <!-- Column 3: LEARN -->
-                    <article class="approach-card">
-                        <div class="card-header">
-                            <span class="card-num">03</span>
-                            <span class="card-line"></span>
+                    <!-- Item 03: LEARN -->
+                    <article class="approach-item approach-left" data-index="03">
+                        <div class="item-number-wrap">
+                            <span class="item-num">03</span>
+                            <span class="item-active-dot"></span>
                         </div>
-                        <h3 class="card-title">LEARN</h3>
-                        <p class="card-body">
-                            I don't expect to know everything. I stay curious, learn through building, and keep improving with every problem.
-                        </p>
+                        <div class="item-body">
+                            <h3 class="item-heading">LEARN</h3>
+                            <p class="item-text">
+                                I don't expect to know everything. I stay curious, learn through building, and keep improving with every problem.
+                            </p>
+                        </div>
+                        <span class="item-hover-bar" aria-hidden="true"></span>
                     </article>
                 </div>
             </div>
@@ -149,50 +182,42 @@
 
 
         <!-- =========================================================
-             3. CURRENTLY EXPLORING
+             SECTION 03: CURRENTLY EXPLORING (Oversized Typography Field)
         ========================================================= -->
         <section class="exploring-section" id="exploring">
             <div class="section-container">
                 <div class="section-header header-inline">
-                    <span class="mono-kicker">CURRENTLY EXPLORING</span>
+                    <span class="mono-kicker">03 / CURRENTLY EXPLORING</span>
                     <span class="header-rule"></span>
                 </div>
 
-                <div class="exploring-list">
-                    <!-- Item 1 -->
-                    <div class="exploring-item">
-                        <span class="item-num">01</span>
-                        <div class="item-content">
-                            <h3 class="item-title">SOFTWARE ENGINEERING</h3>
-                            <span class="item-accent"></span>
-                        </div>
+                <div class="exploring-typography-grid" id="exploringGrid">
+                    <!-- Topic 1 -->
+                    <div class="exploring-row row-left" data-num="01">
+                        <span class="explore-index">[01]</span>
+                        <h3 class="explore-title">SOFTWARE ENGINEERING</h3>
+                        <span class="explore-line" aria-hidden="true"></span>
                     </div>
 
-                    <!-- Item 2 -->
-                    <div class="exploring-item">
-                        <span class="item-num">02</span>
-                        <div class="item-content">
-                            <h3 class="item-title">WEB DEVELOPMENT</h3>
-                            <span class="item-accent"></span>
-                        </div>
+                    <!-- Topic 2 -->
+                    <div class="exploring-row row-right" data-num="02">
+                        <span class="explore-index">[02]</span>
+                        <h3 class="explore-title">WEB DEVELOPMENT</h3>
+                        <span class="explore-line" aria-hidden="true"></span>
                     </div>
 
-                    <!-- Item 3 -->
-                    <div class="exploring-item">
-                        <span class="item-num">03</span>
-                        <div class="item-content">
-                            <h3 class="item-title">ARTIFICIAL INTELLIGENCE</h3>
-                            <span class="item-accent"></span>
-                        </div>
+                    <!-- Topic 3 -->
+                    <div class="exploring-row row-left" data-num="03">
+                        <span class="explore-index">[03]</span>
+                        <h3 class="explore-title">ARTIFICIAL INTELLIGENCE</h3>
+                        <span class="explore-line" aria-hidden="true"></span>
                     </div>
 
-                    <!-- Item 4 -->
-                    <div class="exploring-item">
-                        <span class="item-num">04</span>
-                        <div class="item-content">
-                            <h3 class="item-title">MACHINE LEARNING</h3>
-                            <span class="item-accent"></span>
-                        </div>
+                    <!-- Topic 4 -->
+                    <div class="exploring-row row-right" data-num="04">
+                        <span class="explore-index">[04]</span>
+                        <h3 class="explore-title">MACHINE LEARNING</h3>
+                        <span class="explore-line" aria-hidden="true"></span>
                     </div>
                 </div>
             </div>
@@ -200,25 +225,29 @@
 
 
         <!-- =========================================================
-             4. FINAL CTA
+             SECTION 04: SKILLS TRANSITION (Doorway to Skills Page)
         ========================================================= -->
         <section class="skills-cta-section" id="cta">
             <div class="cta-glow-bg" aria-hidden="true"></div>
             <div class="section-container cta-container">
-                <div class="cta-text-wrapper">
+                <div class="cta-editorial-header">
+                    <div class="cta-kicker-row">
+                        <span class="mono-kicker">04 / NEXT</span>
+                        <span class="cta-kicker-dash"></span>
+                        <span class="mono-kicker">SKILLS</span>
+                    </div>
+
                     <h2 class="cta-heading">
-                        EXPLORE MY<br>
-                        <span class="accent-red">SKILLS.</span>
+                        TECHNICAL CURIOSITY,<br>
+                        TURNED INTO <span class="accent-red">PRACTICAL CRAFT.</span>
                     </h2>
-                    <p class="cta-subtext">
-                        A closer look at the technologies, tools and foundations I’m building with.
-                    </p>
                 </div>
 
                 <div class="cta-action">
-                    <a href="skills.html" class="skills-cta-btn">
-                        <span>VIEW MY SKILLS</span>
-                        <span class="btn-arrow">&rarr;</span>
+                    <a href="skills.html" class="skills-editorial-link" id="skillsLink">
+                        <span class="link-label">EXPLORE MY SKILLS</span>
+                        <span class="link-arrow">&rarr;</span>
+                        <span class="link-underline" aria-hidden="true"></span>
                     </a>
                 </div>
             </div>
@@ -237,7 +266,7 @@
         </div>
     </footer>
 
-    <!-- About Page Script -->
+    <!-- About Page Motion Script -->
     <script src="./about.js"></script>
 </body>
 
