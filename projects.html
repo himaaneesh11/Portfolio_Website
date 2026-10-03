@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Projects — A.V.Himaaneesh Reddy" />
+  <title>Projects — Himaaneesh</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; min-height: 100vh; background: #050505; color: #F2EEE6; font-family: "DM Sans", sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    
+    .header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 28px 42px; border-bottom: none; background: rgba(5, 5, 5, 0.85); backdrop-filter: blur(10px); }
+    .brand { font-family: "Bodoni Moda", serif; font-size: 24px; letter-spacing: -0.04em; }
+    .nav { display: flex; align-items: center; gap: 28px; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: #C9BDAA; }
+    .nav a:hover { opacity: 0.6; }
+    .nav a.active { color: #F2EEE6; }
+
+    main { max-width: 1100px; margin: 0 auto; padding: 160px 42px 100px; }
+    .section-tag { font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: #8F8980; margin-bottom: 24px; }
+    .page-title { font-family: "DM Sans", sans-serif; font-weight: 600; font-style: italic; font-size: clamp(48px, 8vw, 110px); letter-spacing: -0.06em; line-height: 0.84; margin-bottom: 40px; }
+    .page-title em { color: #A51D2D; font-style: italic; }
+    
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px; margin-top: 60px; }
+    .project-card { border: 1px solid rgba(242, 238, 230, 0.1); padding: 40px 32px; border-radius: 4px; transition: border-color 0.3s ease, transform 0.3s ease; }
+    .project-card:hover { border-color: rgba(165, 29, 45, 0.6); transform: translateY(-4px); }
+    .project-num { font-size: 10px; letter-spacing: 0.2em; color: #A51D2D; margin-bottom: 16px; }
+    .project-title { font-family: "Bodoni Moda", serif; font-size: 28px; margin-bottom: 14px; }
+    .project-desc { font-size: 13px; line-height: 1.7; color: rgba(232, 227, 218, 0.72); margin-bottom: 24px; }
+    .project-tags { display: flex; gap: 10px; flex-wrap: wrap; }
+    .project-tag { font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid rgba(242, 238, 230, 0.15); padding: 6px 12px; border-radius: 100px; color: #C9BDAA; }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <a href="index.html" class="brand">HIMAANEESH REDDY</a>
+    <nav class="nav">
+      <a href="about.html">About</a>
+      <a href="skills.html">Skills</a>
+      <a href="projects.html" class="active">Projects</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="section-tag">PORTFOLIO / 02</div>
+    <h1 class="page-title">FEATURED <em>WORKS.</em></h1>
+    <p style="max-width: 540px; font-size: 14px; line-height: 1.7; color: rgba(232,227,218,0.75);">
+      A curated collection of web applications, interactive software experiments, and AI systems built with precision and purpose.
+    </p>
+
+    <div class="projects-grid">
+      <article class="project-card">
+        <div class="project-num">PROJECT 01</div>
+        <h2 class="project-title">Personal Editorial Portfolio</h2>
+        <p class="project-desc">A dark cinematic editorial website showcasing technical craftsmanship, 3D text layers, smooth scroll transitions, and custom typography.</p>
+        <div class="project-tags">
+          <span class="project-tag">HTML5</span>
+          <span class="project-tag">Vanilla CSS</span>
+          <span class="project-tag">JavaScript (ES6+)</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <div class="project-num">PROJECT 02</div>
+        <h2 class="project-title">AI & ML Explorations</h2>
+        <p class="project-desc">Practical machine learning tools and algorithms focused on real-world problem solving and continuous algorithmic optimization.</p>
+        <div class="project-tags">
+          <span class="project-tag">Python</span>
+          <span class="project-tag">Data Structures</span>
+          <span class="project-tag">AI Models</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <div class="project-num">PROJECT 03</div>
+        <h2 class="project-title">Full-Stack Web Applications</h2>
+        <p class="project-desc">End-to-end full-stack web solutions focusing on intuitive user experience, clean backend API architecture, and performance.</p>
+        <div class="project-tags">
+          <span class="project-tag">Full-Stack</span>
+          <span class="project-tag">Web APIs</span>
+          <span class="project-tag">UI/UX</span>
+        </div>
+      </article>
+    </div>
+  </main>
+</body>
+
+</html>
+
+The above content shows the entire, complete file contents of the requested file.

@@ -1,0 +1,2391 @@
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+
+      overflow: hidden;
+
+      background: #050505;
+    }
+
+
+    body {
+      color: #F2EEE6;
+
+      font-family:
+        "Manrope",
+        sans-serif;
+
+      -webkit-font-smoothing: antialiased;
+
+      text-rendering: optimizeLegibility;
+    }
+
+
+    a {
+      color: inherit;
+
+      text-decoration: none;
+    }
+
+
+    button {
+      font: inherit;
+    }
+
+
+    /* =====================================================
+       DESIGN SYSTEM
+    ====================================================== */
+
+    :root {
+      --font-primary: "Manrope", Arial, sans-serif;
+      --font-display: "Bodoni Moda", Georgia, serif;
+      --font-mono: "IBM Plex Mono", monospace;
+
+      --font-sans: var(--font-primary);
+      --font-serif: var(--font-display);
+      --font-code: var(--font-mono);
+
+      /* Legacy compatibility mappings */
+      --serif: var(--font-display);
+      --sans: var(--font-primary);
+      --font: var(--font-primary);
+      --display-font: var(--font-display);
+      --ui-font: var(--font-primary);
+
+      --white: #F2EEE6;
+      --white-soft: #D7D0C6;
+      --muted: #8D8780;
+      --red-bright: #D72D3E;
+      --red: #D72D3E;
+    }
+
+
+    /* =====================================================
+       HERO
+    ====================================================== */
+
+    .hero {
+
+      position: relative;
+
+      width: 100%;
+
+      height: 100dvh;
+
+      overflow: hidden;
+
+      background:
+        var(--black);
+
+      isolation: isolate;
+    }
+
+
+    /* =====================================================
+       HERO IMAGE
+    ====================================================== */
+
+    .hero-image {
+
+      position: absolute;
+
+      inset: 0;
+
+      z-index: 3;
+
+      width: 100%;
+
+      height: 100%;
+
+      object-fit: cover;
+
+      /*
+        The original image already places
+        the subject toward the right.
+      */
+
+      object-position: center center;
+
+      filter:
+        brightness(0.82) contrast(1.07) saturate(0.94);
+
+      animation:
+        imageReveal 1.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+
+    @keyframes imageReveal {
+
+      from {
+
+        opacity: 0;
+
+        transform:
+          scale(1.025);
+      }
+
+      to {
+
+        opacity: 1;
+
+        transform:
+          scale(1);
+      }
+    }
+
+
+    /* =====================================================
+       CINEMATIC LEFT OVERLAY
+       
+       The overlay is strongest on the left,
+       where the typography sits.
+    ====================================================== */
+
+    .image-overlay {
+
+      position: absolute;
+
+      inset: 0;
+
+      z-index: 4;
+
+      pointer-events: none;
+
+      background:
+        linear-gradient(90deg,
+          rgba(5, 5, 5, 0.90) 0%,
+          rgba(5, 5, 5, 0.78) 17%,
+          rgba(5, 5, 5, 0.55) 33%,
+          rgba(5, 5, 5, 0.22) 50%,
+          rgba(5, 5, 5, 0.04) 72%,
+          rgba(5, 5, 5, 0.08) 100%);
+    }
+
+
+    /* =====================================================
+       SUBTLE ATMOSPHERIC RED
+    ====================================================== */
+
+    .red-atmosphere {
+
+      position: absolute;
+
+      z-index: 5;
+
+      left: -10vw;
+
+      bottom: -12vh;
+
+      width: 38vw;
+
+      height: 45vh;
+
+      pointer-events: none;
+
+      background:
+        rgba(130, 10, 22, 0.08);
+
+      filter:
+        blur(110px);
+    }
+
+
+    /* =====================================================
+       HEADER
+    ====================================================== */
+
+    .header {
+
+      position: absolute;
+
+      top: 0;
+
+      left: 0;
+
+      right: 0;
+
+      z-index: 30;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      padding:
+        30px 42px;
+
+      animation:
+        headerReveal 0.9s ease-out 0.35s both;
+    }
+
+
+    /* =====================================================
+       BRAND
+    ====================================================== */
+
+    .brand {
+
+      font-family:
+        var(--ui-font);
+
+      font-size: 11px;
+
+      font-weight: 600;
+
+      letter-spacing: 0.12em;
+
+      text-transform: uppercase;
+
+      color:
+        var(--ivory);
+
+      white-space: nowrap;
+
+      transition:
+        opacity 250ms ease;
+    }
+
+
+    .brand:hover {
+
+      opacity: 0.65;
+    }
+
+
+    /* =====================================================
+       HEADER RIGHT
+    ====================================================== */
+
+    .header-right {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 42px;
+    }
+
+
+    /* =====================================================
+       MAIN NAVIGATION
+       
+       HORIZONTAL
+    ====================================================== */
+
+    .main-nav {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 30px;
+    }
+
+
+    .main-nav a {
+
+      position: relative;
+
+      font-family:
+        var(--ui-font);
+
+      font-size: 9px;
+
+      font-weight: 500;
+
+      letter-spacing: 0.11em;
+
+      text-transform: uppercase;
+
+      color:
+        var(--warm-white);
+
+      transition:
+        opacity 300ms ease,
+        transform 300ms ease;
+    }
+
+
+    .main-nav a::after {
+
+      content: "";
+
+      position: absolute;
+
+      left: 0;
+
+      bottom: -5px;
+
+      width: 100%;
+
+      height: 1px;
+
+      background:
+        var(--ivory);
+
+      transform:
+        scaleX(0);
+
+      transform-origin:
+        right;
+
+      transition:
+        transform 300ms cubic-bezier(0.76,
+          0,
+          0.24,
+          1);
+    }
+
+
+    .main-nav a:hover {
+
+      opacity: 0.65;
+
+      transform:
+        translateY(-1px);
+    }
+
+
+    .main-nav a:hover::after {
+
+      transform:
+        scaleX(1);
+
+      transform-origin:
+        left;
+    }
+
+
+    /* =====================================================
+       SOCIAL NAVIGATION
+    ====================================================== */
+
+    .social-nav {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 20px;
+
+      padding-left: 2px;
+    }
+
+
+    .social-nav a {
+
+      font-family:
+        var(--ui-font);
+
+      font-size: 8px;
+
+      font-weight: 500;
+
+      letter-spacing: 0.08em;
+
+      text-transform: uppercase;
+
+      color:
+        var(--champagne);
+
+      transition:
+        opacity 300ms ease;
+    }
+
+
+    .social-nav a:hover {
+
+      opacity: 0.45;
+    }
+
+
+    /* =====================================================
+       MAIN INTRODUCTION
+       
+       IMPORTANT:
+       This container is deliberately constrained
+       to the left side of the viewport.
+    ====================================================== */
+
+    .intro {
+
+      position: absolute;
+
+      z-index: 15;
+
+      left: 4.5vw;
+
+      top: 57%;
+
+      width:
+        min(44vw,
+          640px);
+
+      transform:
+        translateY(-30%);
+
+      pointer-events: none;
+
+      animation:
+        introReveal 0.5s ease-out both;
+    }
+
+
+    /* =====================================================
+       NAME
+    ====================================================== */
+
+    /* =====================================================
+   HUGE EDITORIAL MOVING NAME
+   RIGHT → LEFT
+===================================================== */
+
+    /* =====================================================
+   EDITORIAL BACKGROUND NAME MARQUEE
+   RIGHT → LEFT
+===================================================== */
+    /* =====================================================
+   EDITORIAL BACKGROUND NAME
+   RIGHT → LEFT
+===================================================== */
+
+
+
+    /* =====================================================
+   PREMIUM BACKGROUND NAME MARQUEE
+   RIGHT → LEFT
+===================================================== */
+
+
+    /* =====================================================
+   PREMIUM CONTINUOUS NAME MARQUEE
+   RIGHT → LEFT
+===================================================== */
+
+    .hero-name-marquee {
+      position: absolute;
+      left: 0;
+      top: 25%;
+      width: 100%;
+      height: 24vh;
+
+      overflow: hidden;
+
+      z-index: 6;
+      pointer-events: none;
+
+      transform: translateY(-50%);
+    }
+
+    .hero-name-track {
+      display: flex;
+      align-items: center;
+
+      width: max-content;
+      height: 100%;
+
+      will-change: transform;
+
+      transform: translate3d(100vw, 0, 0);
+    }
+
+    .hero-name-item {
+
+      flex: 0 0 auto;
+
+      display: block;
+
+      font-family: var(--font-primary);
+
+      font-size: clamp(96px, 10.5vw, 215px);
+
+      font-weight: 800;
+
+      font-style: italic;
+
+      line-height: 0.82;
+
+      letter-spacing: -0.065em;
+
+      white-space: nowrap;
+
+      color: #FFFFFF;
+
+      opacity: 1;
+
+      padding-right: 7vw;
+
+      text-transform: none;
+
+    }
+
+    .hero-name-item .red-name {
+      color: #D72D3E !important;
+    }
+
+    /* =====================================================
+   PERSON FOREGROUND
+   TEXT GOES BEHIND THE PERSON
+===================================================== */
+
+    .hero-person-foreground {
+
+      position: absolute;
+
+      inset: 0;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+      object-position: center center;
+
+      z-index: 7;
+
+      pointer-events: none;
+    }
+
+
+
+    /* =====================================================
+   MOBILE
+===================================================== */
+
+    @media (max-width: 700px) {
+
+      .hero-name-marquee {
+        top: 24%;
+        height: 18vh;
+      }
+
+      .hero-name-item {
+        font-size: 18vw;
+        padding-right: 10vw;
+      }
+
+
+    }
+
+
+    /* =====================================================
+   SLOW CINEMATIC NAME MOVEMENT
+   ===================================================== */
+
+
+
+
+    /* =====================================================
+       A.V.HIMAANEESH
+       
+       Carefully sized so the complete word
+       remains visible.
+    ====================================================== */
+
+    .intro-heading {
+      margin-bottom: 12px;
+    }
+
+    .name-line-one {
+
+      display: block;
+
+      font-family:
+        var(--display-font);
+
+      font-size:
+        clamp(48px,
+          5.2vw,
+          98px);
+
+      font-weight: 800;
+
+      font-style: italic;
+
+      line-height: 0.84;
+
+      letter-spacing:
+        -0.05em;
+
+      color: #FFFFFF;
+
+      white-space: nowrap;
+
+      max-width: 100%;
+    }
+
+
+    /* =====================================================
+       REDDY
+    ====================================================== */
+
+    .name-line-two {
+
+      display: block;
+
+      margin-top: 2px;
+
+      font-family:
+        var(--display-font);
+
+      font-size:
+        clamp(48px,
+          5.2vw,
+          98px);
+
+      font-weight: 800;
+
+      font-style: italic;
+
+      line-height: 0.84;
+
+      letter-spacing:
+        -0.05em;
+
+      color: #D72D3E;
+
+      white-space: nowrap;
+    }
+
+
+    /* =====================================================
+       PROFESSIONAL PARAGRAPH
+    ====================================================== */
+
+    .intro-copy {
+      width: min(100%, 480px);
+      margin-top: 16px;
+      margin-left: 0.25vw;
+      font-family: var(--font-primary);
+      font-size: clamp(12px, 0.9vw, 15px);
+      font-weight: 400;
+      line-height: 1.72;
+      color: rgba(242, 238, 230, 0.82);
+    }
+
+    .intro-copy strong {
+      color: #FFFFFF;
+      font-weight: 700;
+    }
+
+    .intro-copy em {
+      color: var(--red-bright);
+      font-style: italic;
+      font-weight: 600;
+    }
+
+    /* =====================================================
+       ROLE LABEL
+    ====================================================== */
+
+    .role-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 20px;
+      margin-left: 0.25vw;
+      font-family: var(--font-primary);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--white-soft);
+    }
+
+    .role-red-line {
+      display: inline-block;
+      width: 36px;
+      height: 1.5px;
+      background: var(--red-bright);
+      box-shadow: 0 0 10px rgba(215, 45, 62, 0.7);
+    }
+
+
+    /* =====================================================
+       HERO NAVIGATION CARDS BOXES
+    ====================================================== */
+
+    .hero-nav-cards {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 32px;
+      margin-left: 0.25vw;
+      pointer-events: auto;
+    }
+
+    .nav-card {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 18px 18px;
+      background: rgba(15, 15, 15, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      min-width: 122px;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      cursor: pointer;
+    }
+
+    .nav-card:hover {
+      background: rgba(165, 29, 45, 0.22);
+      border-color: rgba(215, 45, 62, 0.65);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px -4px rgba(165, 29, 45, 0.35);
+    }
+
+    .card-icon {
+      color: rgba(242, 238, 230, 0.85);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.3s ease;
+    }
+
+    .nav-card:hover .card-icon {
+      color: #D72D3E;
+    }
+
+    .card-num {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: rgba(242, 238, 230, 0.55);
+    }
+
+    .card-title {
+      font-family: var(--font-primary);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      color: #F2EEE6;
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
+
+    .card-sub {
+      font-family: var(--font-primary);
+      font-size: 9px;
+      font-weight: 400;
+      color: rgba(242, 238, 230, 0.50);
+      margin-top: 4px;
+      white-space: nowrap;
+    }
+
+    .card-line {
+      width: 18px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.12);
+      flex-shrink: 0;
+    }
+
+
+    /* =====================================================
+       CLICK ANYWHERE TO EXPLORE CTA BAR
+    ===================================================== */
+
+    .explore-cta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 24px;
+      margin-left: 0.25vw;
+      pointer-events: auto;
+    }
+
+    .cta-pulse-circle {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(215, 45, 62, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(215, 45, 62, 0.08);
+      box-shadow: 0 0 15px rgba(215, 45, 62, 0.3);
+      animation: pulseGlow 2.4s infinite cubic-bezier(0.4, 0, 0.6, 1);
+    }
+
+    .cta-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #D72D3E;
+      box-shadow: 0 0 8px #D72D3E;
+    }
+
+    @keyframes pulseGlow {
+
+      0%,
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 12px rgba(215, 45, 62, 0.3);
+      }
+
+      50% {
+        transform: scale(1.08);
+        box-shadow: 0 0 22px rgba(215, 45, 62, 0.6);
+      }
+    }
+
+    .cta-text {
+      font-family: var(--ui-font);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(242, 238, 230, 0.9);
+    }
+
+    .cta-arrow-line {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .cta-line {
+      width: 52px;
+      height: 1px;
+      background: var(--editorial-red);
+    }
+
+    .cta-arrow {
+      color: var(--editorial-red);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+
+    /* =====================================================
+       INTRO ANIMATION
+    ====================================================== */
+
+    @keyframes introReveal {
+
+      from {
+
+        opacity: 0;
+
+      }
+
+      to {
+
+        opacity: 1;
+
+      }
+    }
+
+
+    @keyframes headerReveal {
+
+      from {
+
+        opacity: 0;
+
+        transform:
+          translateY(-12px);
+      }
+
+      to {
+
+        opacity: 1;
+
+        transform:
+          translateY(0);
+      }
+    }
+
+
+    /* =====================================================
+       MOBILE MENU BUTTON
+    ====================================================== */
+
+    .menu-button {
+
+      display: none;
+
+      position: absolute;
+
+      top: 17px;
+
+      right: 17px;
+
+      z-index: 50;
+
+      width: 42px;
+
+      height: 42px;
+
+      border: none;
+
+      background:
+        transparent;
+
+      cursor: pointer;
+    }
+
+
+    .menu-lines {
+
+      width: 21px;
+
+      height: 13px;
+
+      display: flex;
+
+      flex-direction: column;
+
+      justify-content: space-between;
+    }
+
+
+    .menu-lines span {
+
+      width: 100%;
+
+      height: 1px;
+
+      background:
+        var(--ivory);
+    }
+
+
+    /* =====================================================
+       MOBILE NAVIGATION DRAWER
+    ====================================================== */
+
+    .mobile-overlay {
+
+      position: fixed;
+
+      inset: 0;
+
+      z-index: 40;
+
+      background:
+        rgba(0,
+          0,
+          0,
+          0.55);
+
+      opacity: 0;
+
+      pointer-events: none;
+
+      transition:
+        opacity 400ms ease;
+    }
+
+
+    .mobile-panel {
+
+      position: fixed;
+
+      top: 0;
+
+      right: 0;
+
+      bottom: 0;
+
+      z-index: 45;
+
+      width:
+        min(84vw,
+          390px);
+
+      padding:
+        80px 30px 40px;
+
+      background:
+        #111111;
+
+      transform:
+        translateX(100%);
+
+      transition:
+        transform 550ms cubic-bezier(0.76,
+          0,
+          0.24,
+          1);
+    }
+
+
+    .mobile-menu-open .mobile-overlay {
+
+      opacity: 1;
+
+      pointer-events: auto;
+    }
+
+
+    .mobile-menu-open .mobile-panel {
+
+      transform:
+        translateX(0);
+    }
+
+
+    .mobile-panel-label {
+
+      margin-bottom: 30px;
+
+      font-family:
+        var(--ui-font);
+
+      font-size: 8px;
+
+      font-weight: 500;
+
+      letter-spacing: 0.25em;
+
+      text-transform: uppercase;
+
+      color:
+        var(--muted);
+    }
+
+
+    .mobile-links {
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 14px;
+    }
+
+
+    .mobile-links a {
+
+      font-family:
+        var(--display-font);
+
+      font-size: 42px;
+
+      font-weight: 400;
+
+      line-height: 0.95;
+
+      color:
+        var(--ivory);
+
+      transition:
+        opacity 250ms ease;
+    }
+
+
+    .mobile-links a:hover {
+
+      opacity: 0.5;
+    }
+
+
+    .mobile-socials {
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 18px;
+
+      margin-top: 60px;
+    }
+
+
+    .mobile-socials a {
+
+      font-family:
+        var(--ui-font);
+
+      font-size: 9px;
+
+      font-weight: 500;
+
+      letter-spacing: 0.1em;
+
+      text-transform: uppercase;
+
+      color:
+        var(--champagne);
+    }
+
+
+    .mobile-close {
+
+      position: absolute;
+
+      top: 22px;
+
+      right: 22px;
+
+      width: 40px;
+
+      height: 40px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      border: none;
+
+      background:
+        transparent;
+
+      color:
+        var(--ivory);
+
+      font-size: 27px;
+
+      font-weight: 200;
+
+      cursor: pointer;
+    }
+
+
+    /* =====================================================
+       MOBILE
+    ====================================================== */
+
+    @media (max-width: 700px) {
+
+
+      html,
+      body {
+
+        overflow: hidden;
+      }
+
+
+      .header {
+
+        padding:
+          22px;
+      }
+
+
+      .header-right {
+
+        display: none;
+      }
+
+
+      .brand {
+
+        font-size: 9px;
+
+        letter-spacing:
+          0.1em;
+      }
+
+
+      .menu-button {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+      }
+
+
+      .hero-image {
+
+        object-position:
+          66% center;
+
+        filter:
+          brightness(0.76) contrast(1.06) saturate(0.94);
+      }
+
+
+      .image-overlay {
+
+        background:
+          linear-gradient(180deg,
+            rgba(5, 5, 5, 0.54) 0%,
+            rgba(5, 5, 5, 0.12) 36%,
+            rgba(5, 5, 5, 0.80) 100%);
+      }
+
+
+      .intro {
+
+        left: 7vw;
+
+        top: 55%;
+
+        width: 86vw;
+      }
+
+
+      .name-line-one {
+
+        font-size:
+          12.4vw;
+
+        letter-spacing:
+          -0.055em;
+      }
+
+
+      .name-line-two {
+
+        margin-left:
+          8vw;
+
+        font-size:
+          11.6vw;
+      }
+
+
+      .intro-copy {
+
+        width: 78vw;
+
+        margin-top: 28px;
+
+        font-size: 11px;
+
+        line-height: 1.72;
+      }
+
+
+      .role-label {
+
+        margin-top: 18px;
+
+        font-size: 7px;
+
+        letter-spacing:
+          0.17em;
+      }
+
+    }
+
+
+    /* =====================================================
+       TABLET / SMALL LAPTOP
+       
+       Extra protection against face overlap.
+    ====================================================== */
+
+    @media (min-width: 701px) and (max-width: 1200px) {
+
+      .header {
+
+        padding:
+          26px 30px;
+      }
+
+
+      .header-right {
+
+        gap: 25px;
+      }
+
+
+      .main-nav {
+
+        gap: 20px;
+      }
+
+
+      .social-nav {
+
+        gap: 13px;
+      }
+
+
+      .intro {
+
+        left: 4vw;
+
+        width: 43vw;
+      }
+
+
+      .name-line-one {
+
+        font-size:
+          clamp(48px,
+            5.1vw,
+            78px);
+      }
+
+
+      .name-line-two {
+
+        font-size:
+          clamp(45px,
+            5vw,
+            74px);
+      }
+
+
+      .intro-copy {
+
+        max-width: 390px;
+
+        font-size: 11px;
+      }
+
+    }
+
+
+    /* =====================================================
+       LARGE DESKTOP
+       
+       Keeps name elegant rather than oversized.
+    ====================================================== */
+
+    @media (min-width: 1600px) {
+
+      .intro {
+
+        left: 4.7vw;
+
+        width: 40vw;
+
+        max-width: 720px;
+      }
+
+
+      .name-line-one {
+
+        font-size:
+          clamp(80px,
+            5vw,
+            108px);
+      }
+
+
+      .name-line-two {
+
+        font-size:
+          clamp(72px,
+            4.8vw,
+            102px);
+      }
+
+
+      .intro-copy {
+
+        max-width: 475px;
+
+        font-size: 13px;
+      }
+
+    }
+
+
+    /* =====================================================
+       REDUCED MOTION
+    ====================================================== */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+
+        animation-duration:
+          0.01ms !important;
+
+        animation-delay:
+          0ms !important;
+
+        transition-duration:
+          0.01ms !important;
+      }
+
+    }
+
+    /* =========================================================
+   CINEMATIC PORTFOLIO INTRO
+   ISOLATED — DOES NOT MODIFY HERO
+========================================================= */
+
+    .portfolio-intro {
+      position: fixed;
+      inset: 0;
+
+      width: 100%;
+      height: 100dvh;
+
+      z-index: 9999;
+
+      overflow: hidden;
+
+      background:
+        radial-gradient(ellipse at center,
+          rgba(90, 0, 0, 0.30) 0%,
+          rgba(25, 0, 0, 0.65) 42%,
+          #000000 100%);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      opacity: 1;
+      visibility: visible;
+
+      pointer-events: auto;
+
+      transition:
+        opacity 1.25s cubic-bezier(0.77, 0, 0.175, 1),
+        visibility 1.25s;
+    }
+
+
+    /* =========================================================
+   RED ATMOSPHERE
+========================================================= */
+
+    .portfolio-intro .intro-red-atmosphere {
+      position: absolute;
+      inset: -20%;
+
+      z-index: 0;
+
+      pointer-events: none;
+
+      background:
+        radial-gradient(ellipse at 50% 50%,
+          rgba(150, 0, 0, 0.30) 0%,
+          rgba(80, 0, 0, 0.18) 35%,
+          transparent 70%);
+
+      filter: blur(60px);
+
+      animation:
+        portfolioIntroAtmosphere 6s ease-in-out infinite alternate;
+    }
+
+
+    @keyframes portfolioIntroAtmosphere {
+
+      from {
+        transform: scale(1);
+        opacity: 0.65;
+      }
+
+      to {
+        transform: scale(1.12);
+        opacity: 1;
+      }
+
+    }
+
+
+    /* =========================================================
+   MOVING LIGHT BEAM
+========================================================= */
+
+    .portfolio-intro .intro-light {
+
+      position: absolute;
+
+      top: -25%;
+      left: 0;
+
+      width: 11vw;
+      min-width: 90px;
+      max-width: 170px;
+
+      height: 150%;
+
+      z-index: 4;
+
+      pointer-events: none;
+
+      opacity: 0;
+
+      background:
+        linear-gradient(90deg,
+
+          transparent 0%,
+
+          rgba(255, 0, 0, 0.02) 20%,
+
+          rgba(255, 35, 35, 0.20) 38%,
+
+          rgba(255, 210, 210, 0.95) 50%,
+
+          rgba(255, 35, 35, 0.20) 62%,
+
+          rgba(255, 0, 0, 0.02) 80%,
+
+          transparent 100%);
+
+      filter:
+        blur(2px) drop-shadow(0 0 25px rgba(255, 30, 30, 0.55)) drop-shadow(0 0 65px rgba(255, 0, 0, 0.25));
+
+      mix-blend-mode: screen;
+    }
+
+
+    .portfolio-intro .intro-light::after {
+
+      content: "";
+
+      position: absolute;
+
+      top: 0;
+      left: 50%;
+
+      width: 2px;
+      height: 100%;
+
+      transform: translateX(-50%);
+
+      background:
+        linear-gradient(180deg,
+          transparent,
+          rgba(255, 255, 255, 0.75),
+          transparent);
+
+      box-shadow:
+        0 0 12px rgba(255, 80, 80, 0.9),
+        0 0 35px rgba(255, 0, 0, 0.5);
+    }
+
+
+    /* =========================================================
+   NAME CONTAINER
+========================================================= */
+
+    .portfolio-intro .intro-name-wrap {
+
+      position: absolute;
+
+      left: 50%;
+      top: 50%;
+
+      width: min(92vw, 1500px);
+
+      transform:
+        translate(-50%, -50%);
+
+      z-index: 3;
+
+      pointer-events: none;
+    }
+
+
+    /* =========================================================
+   NAME REVEAL MASK
+========================================================= */
+
+    .portfolio-intro .intro-name-mask {
+
+      position: relative;
+
+      width: 100%;
+
+      overflow: hidden;
+
+      --reveal-position: -15%;
+
+      mask-image:
+        linear-gradient(90deg,
+
+          transparent 0%,
+
+          transparent calc(var(--reveal-position) - 8%),
+
+          #000 calc(var(--reveal-position) - 3%),
+
+          #000 calc(var(--reveal-position) + 3%),
+
+          transparent calc(var(--reveal-position) + 8%),
+
+          transparent 100%);
+
+      -webkit-mask-image:
+        linear-gradient(90deg,
+
+          transparent 0%,
+
+          transparent calc(var(--reveal-position) - 8%),
+
+          #000 calc(var(--reveal-position) - 3%),
+
+          #000 calc(var(--reveal-position) + 3%),
+
+          transparent calc(var(--reveal-position) + 8%),
+
+          transparent 100%);
+
+      mask-repeat: no-repeat;
+      -webkit-mask-repeat: no-repeat;
+
+      mask-size: 100% 100%;
+      -webkit-mask-size: 100% 100%;
+    }
+
+
+    /* =========================================================
+   NAME
+========================================================= */
+
+    .portfolio-intro .intro-name {
+
+      margin: 0;
+      padding: 0;
+
+      width: 100%;
+
+      text-align: center;
+
+      white-space: nowrap;
+
+      font-family:
+        "Manrope",
+        Arial,
+        sans-serif;
+
+      font-size:
+        clamp(2rem, 6vw, 7rem);
+
+      font-weight: 800;
+
+      font-style: italic;
+
+      line-height: 0.95;
+
+      letter-spacing:
+        clamp(-0.04em, -0.12vw, -0.02em);
+
+      color: #F2EEE6;
+
+      text-shadow:
+        0 0 20px rgba(255, 255, 255, 0.08),
+
+        0 0 50px rgba(255, 0, 0, 0.10);
+
+      user-select: none;
+    }
+
+
+    /* =========================================================
+   CENTER GLOW
+========================================================= */
+
+    .portfolio-intro .intro-center-glow {
+
+      position: absolute;
+
+      left: 50%;
+      top: 50%;
+
+      width: min(55vw, 750px);
+      height: min(55vw, 750px);
+
+      transform:
+        translate(-50%, -50%) scale(0.65);
+
+      z-index: 1;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(circle,
+
+          rgba(170, 0, 0, 0.18) 0%,
+
+          rgba(100, 0, 0, 0.08) 35%,
+
+          transparent 72%);
+
+      filter: blur(45px);
+
+      opacity: 0;
+
+      pointer-events: none;
+
+      transition:
+        opacity 1.2s ease,
+        transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+
+    .portfolio-intro.center-stopped .intro-center-glow {
+
+      opacity: 1;
+
+      transform:
+        translate(-50%, -50%) scale(1);
+    }
+
+
+    /* =========================================================
+   CENTER → FULL NAME REVEAL
+========================================================= */
+
+    .portfolio-intro.center-stopped .intro-name-mask {
+
+      animation:
+        introFullNameReveal 1.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+
+    @keyframes introFullNameReveal {
+
+      0% {
+
+        mask-image:
+          linear-gradient(90deg,
+
+            transparent 0%,
+
+            transparent 43%,
+
+            #000 48%,
+
+            #000 52%,
+
+            transparent 57%,
+
+            transparent 100%);
+
+        -webkit-mask-image:
+          linear-gradient(90deg,
+
+            transparent 0%,
+
+            transparent 43%,
+
+            #000 48%,
+
+            #000 52%,
+
+            transparent 57%,
+
+            transparent 100%);
+      }
+
+
+      100% {
+
+        mask-image:
+          linear-gradient(90deg,
+            #000 0%,
+            #000 100%);
+
+        -webkit-mask-image:
+          linear-gradient(90deg,
+            #000 0%,
+            #000 100%);
+      }
+
+    }
+
+
+    /* =========================================================
+   ENTER PORTFOLIO
+========================================================= */
+
+    .portfolio-intro .intro-enter {
+
+      position: absolute;
+
+      left: 50%;
+      bottom: 8vh;
+
+      transform:
+        translateX(-50%) translateY(20px);
+
+      z-index: 10;
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 15px;
+
+      padding: 0;
+
+      border: 0;
+
+      background: transparent;
+
+      color: #F2EEE6;
+
+      font-family:
+        "Manrope",
+        Arial,
+        sans-serif;
+
+      cursor: pointer;
+
+      opacity: 0;
+      visibility: hidden;
+
+      transition:
+        opacity 0.8s ease,
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+
+    .portfolio-intro .intro-enter.visible {
+
+      opacity: 1;
+
+      visibility: visible;
+
+      transform:
+        translateX(-50%) translateY(0);
+    }
+
+
+    .portfolio-intro .intro-enter-label {
+
+      font-size: 10px;
+
+      font-weight: 700;
+
+      letter-spacing: 0.25em;
+
+      white-space: nowrap;
+    }
+
+
+    .portfolio-intro .intro-enter-line {
+
+      width: 45px;
+
+      height: 1px;
+
+      background:
+        rgba(242, 238, 230, 0.7);
+
+      transition:
+        width 0.4s ease;
+    }
+
+
+    .portfolio-intro .intro-enter-arrow {
+
+      font-size: 15px;
+
+      line-height: 1;
+
+      transition:
+        transform 0.4s ease;
+    }
+
+
+    .portfolio-intro .intro-enter:hover .intro-enter-line {
+
+      width: 68px;
+    }
+
+
+    .portfolio-intro .intro-enter:hover .intro-enter-arrow {
+
+      transform:
+        translateY(5px);
+    }
+
+
+    /* =========================================================
+   EXIT
+========================================================= */
+
+    .portfolio-intro.exit {
+
+      opacity: 0;
+
+      visibility: hidden;
+
+      pointer-events: none;
+    }
+
+
+    .portfolio-intro.exit .intro-name {
+
+      transform: scale(1.035);
+
+      filter: blur(3px);
+
+      transition:
+        transform 1.2s ease,
+        filter 1.2s ease;
+    }
+
+
+    .portfolio-intro.exit .intro-light {
+
+      opacity: 0;
+
+      transition:
+        opacity 0.5s ease;
+    }
+
+
+    /* =========================================================
+   MOBILE
+========================================================= */
+
+    @media (max-width: 700px) {
+
+      .portfolio-intro .intro-name-wrap {
+
+        width: 94vw;
+      }
+
+      .portfolio-intro .intro-name {
+
+        font-size:
+          clamp(1.4rem, 8vw, 3.5rem);
+
+        letter-spacing: -0.025em;
+      }
+
+      .portfolio-intro .intro-light {
+
+        width: 20vw;
+        min-width: 65px;
+      }
+
+      .portfolio-intro .intro-enter {
+
+        bottom: 6vh;
+      }
+
+      .portfolio-intro .intro-enter-label {
+
+        font-size: 8px;
+
+        letter-spacing: 0.20em;
+      }
+
+    }
+
+    /* =========================================================
+   PORTFOLIO CINEMATIC INTRO
+   ISOLATED FULL-SCREEN OVERLAY
+========================================================= */
+
+    .portfolio-intro {
+      position: fixed !important;
+      inset: 0 !important;
+
+      width: 100vw !important;
+      height: 100dvh !important;
+
+      margin: 0 !important;
+      padding: 0 !important;
+
+      z-index: 999999 !important;
+
+      overflow: hidden !important;
+
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+
+      background:
+        radial-gradient(ellipse at 50% 48%,
+          rgba(95, 0, 0, 0.38) 0%,
+          rgba(35, 0, 0, 0.72) 42%,
+          rgba(3, 0, 0, 0.98) 82%,
+          #000 100%) !important;
+
+      opacity: 1 !important;
+      visibility: visible !important;
+
+      pointer-events: auto !important;
+
+      isolation: isolate !important;
+    }
+
+
+    /* Hide the actual portfolio completely underneath */
+
+    .portfolio-intro~.hero {
+      position: relative;
+    }
+
+
+    /* =========================================================
+   ATMOSPHERE
+========================================================= */
+
+    .portfolio-intro .intro-red-atmosphere {
+      position: absolute !important;
+      inset: -25% !important;
+
+      z-index: 0 !important;
+
+      background:
+        radial-gradient(ellipse at center,
+          rgba(150, 0, 0, 0.30),
+          rgba(70, 0, 0, 0.15) 38%,
+          transparent 70%) !important;
+
+      filter: blur(55px);
+
+      pointer-events: none !important;
+    }
+
+
+    /* =========================================================
+   LIGHT BEAM
+========================================================= */
+
+    .portfolio-intro .intro-light {
+      position: absolute !important;
+
+      top: -20% !important;
+      left: 0 !important;
+
+      width: 12vw !important;
+      min-width: 90px !important;
+      max-width: 180px !important;
+
+      height: 140% !important;
+
+      z-index: 5 !important;
+
+      opacity: 0;
+
+      pointer-events: none !important;
+
+      background:
+        linear-gradient(90deg,
+          transparent 0%,
+          rgba(255, 0, 0, 0.05) 25%,
+          rgba(255, 60, 60, 0.30) 42%,
+          rgba(255, 225, 225, 1) 50%,
+          rgba(255, 60, 60, 0.30) 58%,
+          rgba(255, 0, 0, 0.05) 75%,
+          transparent 100%) !important;
+
+      filter:
+        blur(2px) drop-shadow(0 0 25px rgba(255, 20, 20, 0.7)) drop-shadow(0 0 70px rgba(255, 0, 0, 0.35));
+
+      mix-blend-mode: screen;
+    }
+
+
+    /* =========================================================
+   NAME
+========================================================= */
+
+    .portfolio-intro .intro-name-wrap {
+      position: absolute !important;
+
+      left: 50% !important;
+      top: 50% !important;
+
+      width: min(92vw, 1500px) !important;
+
+      transform:
+        translate(-50%, -50%) !important;
+
+      z-index: 4 !important;
+
+      margin: 0 !important;
+      padding: 0 !important;
+
+      pointer-events: none !important;
+    }
+
+
+    .portfolio-intro .intro-name-mask {
+      position: relative !important;
+
+      width: 100% !important;
+
+      overflow: hidden !important;
+
+      --reveal-position: -15%;
+
+      mask-image:
+        linear-gradient(90deg,
+          transparent 0%,
+          transparent calc(var(--reveal-position) - 6%),
+          #000 calc(var(--reveal-position) - 2%),
+          #000 calc(var(--reveal-position) + 2%),
+          transparent calc(var(--reveal-position) + 6%),
+          transparent 100%);
+
+      -webkit-mask-image:
+        linear-gradient(90deg,
+          transparent 0%,
+          transparent calc(var(--reveal-position) - 6%),
+          #000 calc(var(--reveal-position) - 2%),
+          #000 calc(var(--reveal-position) + 2%),
+          transparent calc(var(--reveal-position) + 6%),
+          transparent 100%);
+
+      mask-repeat: no-repeat;
+      -webkit-mask-repeat: no-repeat;
+
+      mask-size: 100% 100%;
+      -webkit-mask-size: 100% 100%;
+    }
+
+
+    .portfolio-intro .intro-name {
+      display: block !important;
+
+      width: 100% !important;
+
+      margin: 0 !important;
+      padding: 0 !important;
+
+      text-align: center !important;
+
+      white-space: nowrap !important;
+
+      font-family:
+        "Manrope",
+        Arial,
+        sans-serif !important;
+
+      font-size:
+        clamp(2.3rem, 6.2vw, 7.5rem) !important;
+
+      font-weight: 800 !important;
+
+      font-style: italic !important;
+
+      line-height: 0.95 !important;
+
+      letter-spacing: -0.055em !important;
+
+      color: #F2EEE6 !important;
+
+      text-shadow:
+        0 0 25px rgba(255, 255, 255, 0.08),
+        0 0 55px rgba(255, 0, 0, 0.12) !important;
+    }
+
+
+    /* =========================================================
+   CENTER GLOW
+========================================================= */
+
+    .portfolio-intro .intro-center-glow {
+      position: absolute !important;
+
+      left: 50% !important;
+      top: 50% !important;
+
+      width: 600px !important;
+      height: 600px !important;
+
+      transform:
+        translate(-50%, -50%) !important;
+
+      z-index: 2 !important;
+
+      border-radius: 50% !important;
+
+      background:
+        radial-gradient(circle,
+          rgba(160, 0, 0, 0.18),
+          transparent 70%) !important;
+
+      filter: blur(45px);
+
+      opacity: 0;
+
+      pointer-events: none !important;
+
+      transition: opacity 1s ease;
+    }
+
+
+    .portfolio-intro.center-stopped .intro-center-glow {
+      opacity: 1;
+    }
+
+
+    /* =========================================================
+   CENTER → FULL NAME
+========================================================= */
+
+    .portfolio-intro.center-stopped .intro-name-mask {
+
+      animation:
+        portfolioFullNameReveal 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+
+    @keyframes portfolioFullNameReveal {
+
+      0% {
+        mask-image:
+          linear-gradient(90deg,
+            transparent 0%,
+            transparent 43%,
+            #000 48%,
+            #000 52%,
+            transparent 57%,
+            transparent 100%);
+
+        -webkit-mask-image:
+          linear-gradient(90deg,
+            transparent 0%,
+            transparent 43%,
+            #000 48%,
+            #000 52%,
+            transparent 57%,
+            transparent 100%);
+      }
+
+      100% {
+        mask-image:
+          linear-gradient(90deg,
+            #000 0%,
+            #000 100%);
+
+        -webkit-mask-image:
+          linear-gradient(90deg,
+            #000 0%,
+            #000 100%);
+      }
+    }
+
+
+    /* =========================================================
+   ENTER BUTTON
+========================================================= */
+
+    .portfolio-intro .intro-enter {
+
+      position: absolute !important;
+
+      left: 50% !important;
+      bottom: 7vh !important;
+
+      transform:
+        translateX(-50%) translateY(18px) !important;
+
+      z-index: 10 !important;
+
+      display: flex !important;
+
+      align-items: center !important;
+      gap: 15px !important;
+
+      margin: 0 !important;
+      padding: 0 !important;
+
+      border: 0 !important;
+
+      background: transparent !important;
+
+      color: #F2EEE6 !important;
+
+      font-family:
+        "Manrope",
+        Arial,
+        sans-serif !important;
+
+      cursor: pointer !important;
+
+      opacity: 0 !important;
+      visibility: hidden !important;
+
+      transition:
+        opacity 0.8s ease,
+        transform 0.8s ease !important;
+    }
+
+
+    .portfolio-intro .intro-enter.visible {
+
+      opacity: 1 !important;
+      visibility: visible !important;
+
+      transform:
+        translateX(-50%) translateY(0) !important;
+    }
+
+
+    .portfolio-intro .intro-enter-label {
+
+      font-size: 10px !important;
+
+      font-weight: 700 !important;
+
+      letter-spacing: 0.25em !important;
+
+      white-space: nowrap !important;
+    }
+
+
+    .portfolio-intro .intro-enter-line {
+
+      width: 48px !important;
+      height: 1px !important;
+
+      background: rgba(242, 238, 230, 0.7) !important;
+    }
+
+
+    .portfolio-intro .intro-enter-arrow {
+
+      font-size: 15px !important;
+    }
+
+
+    /* =========================================================
+   EXIT
+========================================================= */
+
+    .portfolio-intro.exit {
+
+      opacity: 0 !important;
+
+      visibility: hidden !important;
+
+      pointer-events: none !important;
+
+      transition:
+        opacity 1.2s ease,
+        visibility 1.2s !important;
+    }
+
+
+    /* =========================================================
+   MOBILE
+========================================================= */
+
+    @media (max-width: 700px) {
+
+      .portfolio-intro .intro-name-wrap {
+        width: 94vw !important;
+      }
+
+      .portfolio-intro .intro-name {
+        font-size:
+          clamp(1.5rem, 8vw, 3.5rem) !important;
+      }
+
+      .portfolio-intro .intro-light {
+        width: 20vw !important;
+      }
+
+    }

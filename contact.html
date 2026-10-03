@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="Contact Himaaneesh Reddy.">
+
+  <title>Contact — Himaaneesh Reddy</title>
+
+  <!-- =====================================================
+         GOOGLE FONT — MANROPE
+    ====================================================== -->
+  <!-- Google Fonts Typography System -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- =====================================================
+         CONTACT PAGE CSS
+    ====================================================== -->
+  <link rel="stylesheet" href="./contact.css">
+
+</head>
+
+
+<body>
+
+  <!-- =====================================================
+         CONTACT PAGE
+    ====================================================== -->
+
+  <main class="contact-page" id="top">
+
+
+    <!-- =================================================
+             HEADER
+        ================================================== -->
+
+    <header class="site-header">
+
+
+      <!-- BRAND -->
+
+      <a href="./index.html" class="brand" aria-label="Himaaneesh Reddy Home">
+
+        <span class="brand-dot"></span>
+
+        <span>
+          A.V.HIMAANEESH REDDY
+        </span>
+
+      </a>
+
+
+
+      <!-- MAIN NAVIGATION -->
+
+      <nav class="top-nav" aria-label="Primary navigation">
+
+        <a href="./about.html">
+          ABOUT
+        </a>
+
+        <a href="./projects.html">
+          PROJECTS
+        </a>
+
+        <a href="./skills.html">
+          SKILLS
+        </a>
+
+        <a href="./contact.html" class="active" aria-current="page">
+          CONTACT
+        </a>
+
+      </nav>
+
+    </header>
+
+
+
+    <!-- =================================================
+             MAIN CONTACT SECTION
+        ================================================== -->
+
+    <section class="contact-main" aria-labelledby="contact-title">
+
+
+      <!-- =============================================
+                 LEFT SIDE — IMAGE
+            ============================================== -->
+
+      <div class="portrait-panel">
+
+
+        <!-- Red glow -->
+
+        <div class="portrait-glow" aria-hidden="true"></div>
+
+
+
+        <!-- Red circular arc -->
+
+        <div class="portrait-arc" aria-hidden="true"></div>
+
+
+
+        <!-- YOUR IMAGE -->
+
+        <img src="./contact_portrait_16x9.jpg" alt="Portrait of Himaaneesh Reddy" class="portrait">
+
+      </div>
+
+
+
+      <!-- =============================================
+                 RIGHT SIDE — CONTACT FORM
+            ============================================== -->
+
+      <div class="form-panel">
+
+
+        <!-- SECTION NUMBER -->
+
+        <div class="section-kicker">
+
+          <span class="section-number">
+            04
+          </span>
+
+          <span class="kicker-line" aria-hidden="true"></span>
+
+        </div>
+
+
+
+        <!-- CONTACT LABEL -->
+
+        <div class="section-label">
+          CONTACT
+        </div>
+
+
+
+        <!-- MAIN HEADING -->
+
+        <h1 id="contact-title">
+
+          <span>
+            Let’s get
+          </span>
+
+          <span class="accent-line">
+            in touch
+          </span>
+
+        </h1>
+
+
+
+        <!-- SUPPORTING TEXT -->
+
+        <p class="contact-intro">
+          Open to internships, collaborations,<br>
+          research works, or exciting opportunities.
+        </p>
+
+
+
+        <!-- DIVIDER -->
+
+        <div class="intro-rule" aria-hidden="true"></div>
+
+
+
+        <!-- =========================================
+                     CONTACT FORM
+                ========================================== -->
+
+        <form class="contact-form" id="contactForm" novalidate>
+
+
+          <!-- NAME -->
+
+          <label class="field">
+
+            <span class="field-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </span>
+
+            <input id="name" name="name" type="text" autocomplete="name" placeholder="Name" required>
+
+          </label>
+
+
+
+          <!-- EMAIL -->
+
+          <label class="field">
+
+            <span class="field-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round">
+                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                <path d="m22 6-10 7L2 6"></path>
+              </svg>
+            </span>
+
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="Email" required>
+
+          </label>
+
+
+
+          <!-- MESSAGE -->
+
+          <label class="field field-message">
+
+            <span class="field-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+              </svg>
+            </span>
+
+            <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+
+          </label>
+
+
+
+          <!-- SEND BUTTON -->
+
+          <button class="send-button" type="submit">
+
+            <span>
+              SEND MESSAGE
+            </span>
+
+            <span class="send-arrow" aria-hidden="true">
+              →
+            </span>
+
+          </button>
+
+
+
+          <!-- FORM STATUS -->
+
+          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+
+        </form>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+             FOOTER
+        ================================================== -->
+
+    <footer class="site-footer">
+
+
+      <!-- =============================================
+                 LEFT — NAME + SOCIAL LINKS
+            ============================================== -->
+
+      <div class="footer-social">
+
+
+        <!-- FULL NAME -->
+
+        <div class="footer-name" aria-label="Full name">
+
+          <span>
+            ANNAPUREDDY VENKATA
+          </span>
+
+          <span>
+
+            <b>
+              HIMANEESH
+            </b>
+
+            <em>
+              REDDY
+            </em>
+
+          </span>
+
+        </div>
+
+
+
+        <!-- =========================================
+                     SOCIAL LINKS
+                ========================================== -->
+
+        <div class="social-row" aria-label="Contact links">
+
+
+          <!-- EMAIL -->
+
+          <a class="social-link" href="mailto:himaaneeshreddy1106@gmail.com" aria-label="Email Himaaneesh">
+
+            <span class="social-icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                <path d="M22 6l-10 7L2 6"></path>
+              </svg>
+            </span>
+
+            <span>
+              EMAIL
+            </span>
+
+          </a>
+
+
+
+          <!-- LINKEDIN
+                         Add your LinkedIn URL later
+                    -->
+
+          <a class="social-link" href="https://www.linkedin.com/in/himaaneesh-reddy-a-1080b9365" target="_blank"
+            rel="noopener noreferrer" aria-label="LinkedIn Profile">
+
+            <span class="social-icon social-text">
+              in
+            </span>
+
+            <span>
+              LINKEDIN
+            </span>
+
+          </a>
+
+
+
+          <!-- INSTAGRAM
+                         Intentionally empty
+                    -->
+
+          <a class="social-link" href="" data-placeholder-link="instagram" aria-label="Instagram">
+
+            <span class="social-icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </span>
+
+            <span>
+              INSTAGRAM
+            </span>
+
+          </a>
+
+
+
+          <!-- TWITTER / X
+                         Intentionally empty
+                    -->
+
+          <a class="social-link" href="" data-placeholder-link="twitter" aria-label="Twitter X">
+
+            <span class="social-icon social-x">
+              X
+            </span>
+
+            <span>
+              TWITTER
+            </span>
+
+          </a>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- =============================================
+                 VERTICAL DIVIDER
+            ============================================== -->
+
+      <div class="footer-divider" aria-hidden="true"></div>
+
+
+
+      <!-- =============================================
+                 PAGE LINKS
+            ============================================== -->
+
+      <nav class="page-links" aria-label="Footer page navigation">
+
+        <div class="page-links-title">
+          PAGES
+        </div>
+
+        <div class="page-links-list">
+          <a href="./index.html">
+            Home
+          </a>
+
+          <a href="./about.html">
+            About
+          </a>
+
+          <a href="./skills.html">
+            Skills
+          </a>
+
+          <a href="./projects.html">
+            Projects
+          </a>
+        </div>
+
+      </nav>
+
+      <!-- =============================================
+                 TO TOP
+            ============================================== -->
+
+      <a class="to-top" href="#top" aria-label="Back to top">
+
+        <span>
+          TO TOP
+        </span>
+
+        <span class="to-top-circle">
+          ↑
+        </span>
+
+      </a>
+
+    </footer>
+
+  </main>
+
+
+
+  <!-- =====================================================
+         CONTACT PAGE JAVASCRIPT
+    ====================================================== -->
+
+  <script src="./contact.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,874 @@
+/* =========================================================
+   CONTACT PAGE — RESPONSIVE & ZOOM-LOCKED DESIGN SYSTEM
+   HIMAANEESH REDDY
+   DARK CINEMATIC / BLACK + RED
+   ========================================================= */
+
+/* =========================================================
+   01. ROOT VARIABLES
+   ========================================================= */
+
+:root {
+    --black: #030303;
+    --panel-black: #050505;
+    --portrait-black: #070303;
+
+    --font-primary: "Manrope", Arial, sans-serif;
+    --font-display: "Bodoni Moda", Georgia, serif;
+    --font-mono: "IBM Plex Mono", monospace;
+
+    --font: var(--font-primary);
+    --sans: var(--font-primary);
+    --ui-font: var(--font-primary);
+    --serif: var(--font-display);
+
+    --white: #F2EEE6;
+    --white-soft: #D7D0C6;
+    --muted: #8D8780;
+
+    --red-bright: #D72D3E;
+    --red: #D72D3E;
+
+    --line-soft: rgba(215, 45, 62, 0.18);
+}
+
+/* =========================================================
+   02. RESET & BASE
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    background: var(--black);
+    width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100svh;
+    background:
+        radial-gradient(circle at 10% 55%, rgba(120, 5, 15, 0.22), transparent 35%),
+        radial-gradient(circle at 90% 10%, rgba(100, 0, 10, 0.12), transparent 30%),
+        var(--black);
+    color: var(--white);
+    font-family: var(--font);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+textarea {
+    font: inherit;
+}
+
+button {
+    border: none;
+}
+
+::selection {
+    background: var(--red);
+    color: var(--white);
+}
+
+/* =========================================================
+   03. MAIN PAGE STRUCTURE (HEADER - MAIN - FOOTER)
+   ========================================================= */
+.contact-page {
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100svh;
+
+    display: flex;
+    flex-direction: column;
+
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* =========================================================
+   04. HEADER
+   ========================================================= */
+
+.site-header {
+    width: 100%;
+    height: clamp(60px, 7vh, 74px);
+    padding: 0 clamp(24px, 5.1vw, 80px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 100;
+    background: rgba(3, 3, 3, 0.85);
+    border-bottom: 1px solid var(--line-soft);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+/* Brand */
+
+.brand {
+    width: max-content;
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    color: var(--white);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    white-space: nowrap;
+    transition: opacity 0.3s ease;
+}
+
+.brand:hover {
+    opacity: 0.72;
+}
+
+.brand-dot {
+    width: 100%;
+    max-width: 10px;
+    height: 10px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--red);
+    box-shadow: 0 0 10px rgba(255, 38, 56, 0.8), 0 0 22px rgba(255, 38, 56, 0.35);
+}
+
+/* Top Navigation */
+
+.top-nav {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: clamp(24px, 3.2vw, 56px);
+}
+
+.top-nav a {
+    position: relative;
+    color: rgba(244, 241, 236, 0.68);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    transition: color 0.3s ease;
+}
+
+.top-nav a:hover,
+.top-nav a.active {
+    color: var(--white);
+}
+
+.top-nav a.active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -24px;
+    height: 2px;
+    background: var(--red);
+    box-shadow: 0 0 12px rgba(255, 38, 56, 0.65);
+}
+
+/* Theme Mark */
+
+.theme-mark {
+    justify-self: end;
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    color: var(--white);
+    background: transparent;
+    font-size: 23px;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.theme-mark:hover {
+    opacity: 1;
+    transform: rotate(20deg);
+}
+
+/* =========================================================
+   05. MAIN CONTACT SECTION (2 COLUMNS DESKTOP)
+   ========================================================= */
+
+.contact-main {
+    width: 100%;
+
+    height: calc(100svh - clamp(60px, 7vh, 74px));
+    min-height: calc(100svh - clamp(60px, 7vh, 74px));
+
+    display: grid;
+    grid-template-columns: 50% 50%;
+
+    position: relative;
+    flex-shrink: 0;
+}
+
+/* =========================================================
+   06. LEFT PANEL — CINEMATIC PORTRAIT & STABLE LIGHT RING
+   ========================================================= */
+
+.portrait-panel {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 20% 45%, rgba(255, 25, 40, 0.28), transparent 45%),
+        #070303;
+}
+
+.portrait-panel::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(3, 3, 3, 0.02), rgba(3, 3, 3, 0.08) 60%, rgba(3, 3, 3, 0.55));
+    pointer-events: none;
+    z-index: 2;
+}
+
+.portrait {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 0% 50%;
+    z-index: 1;
+}
+
+/* Red Smoke Glow — Ambient enhancement */
+
+.portrait-glow {
+    position: absolute;
+    z-index: 2;
+    inset: 0;
+    background: radial-gradient(circle at 35% 45%, rgba(255, 28, 42, 0.22), transparent 65%);
+    pointer-events: none;
+}
+
+/* Red Circular Light Ring — Built directly into original portrait image */
+
+.portrait-arc {
+    display: none;
+}
+
+/* =========================================================
+   07. RIGHT PANEL — CONTACT FORM
+   ========================================================= */
+
+background: radial-gradient(circle at 76% 28%, rgba(120, 0, 12, 0.12), transparent 36%),
+linear-gradient(135deg, rgba(255, 255, 255, 0.015), transparent 42%),
+#050505;
+
+/* Section Kicker & Label */
+
+.section-kicker {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: clamp(6px, 1vh, 12px);
+}
+
+
+.section-number {
+    color: var(--red);
+
+    font-family: "Manrope", Arial, sans-serif;
+
+    font-size: 16px;
+    font-weight: 800;
+
+    letter-spacing: 0.08em;
+}
+
+.kicker-line {
+    width: 48px;
+    height: 1px;
+    background: rgba(255, 38, 56, 0.8);
+}
+
+.section-label {
+    margin-bottom: clamp(10px, 1.5vh, 22px);
+
+    color: var(--white);
+
+    font-family: "Manrope", Arial, sans-serif;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    letter-spacing: 0.32em;
+}
+
+/* Main Heading */
+
+h1 {
+    margin: 0;
+    max-width: 720px;
+
+    font-family: "Manrope", Arial, sans-serif;
+
+    font-size: clamp(48px, 5.2vw, 92px);
+    line-height: 0.92;
+
+    font-weight: 800;
+    letter-spacing: -0.055em;
+
+    color: var(--white);
+}
+
+h1 span {
+    display: block;
+}
+
+h1 span:first-child {
+    color: var(--white);
+}
+
+h1 .accent-line {
+    color: var(--red);
+}
+
+h1 .period {
+    color: var(--white);
+}
+
+/* Intro text & divider */
+
+.contact-intro {
+    max-width: 700px;
+
+    margin: clamp(18px, 2vh, 26px) 0 clamp(14px, 1.8vh, 22px);
+
+    color: var(--white);
+
+    font-family: "Manrope", Arial, sans-serif;
+
+    font-size: clamp(16px, 1.25vw, 21px);
+
+    line-height: 1.45;
+
+    font-weight: 700;
+
+    letter-spacing: -0.015em;
+}
+
+.intro-rule {
+    width: 100%;
+    height: 1px;
+    margin: clamp(10px, 1.5vh, 18px) 0 clamp(12px, 1.8vh, 20px);
+    background: linear-gradient(90deg, rgba(215, 45, 62, 0.25), var(--red), rgba(215, 45, 62, 0.25));
+    box-shadow: 0 0 12px rgba(255, 38, 56, 0.18);
+}
+
+/* Contact Form */
+
+.contact-form {
+    display: grid;
+    gap: clamp(8px, 1.1vh, 12px);
+    max-width: 680px;
+    width: 100%;
+}
+
+.field {
+    min-height: clamp(46px, 5vh, 56px);
+    display: grid;
+    grid-template-columns: 42px 1fr;
+    align-items: center;
+    padding: 0 17px;
+    background: rgba(15, 15, 15, 0.74);
+    border: 1px solid rgba(215, 45, 62, 0.25);
+    border-radius: 4px;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.field:focus-within {
+    border-color: rgba(255, 38, 56, 0.8);
+    background: rgba(20, 10, 11, 0.82);
+    box-shadow: inset 3px 0 0 var(--red), 0 0 18px rgba(255, 38, 56, 0.09);
+}
+
+.field-message {
+    min-height: clamp(80px, 10vh, 120px);
+    align-items: flex-start;
+    padding-top: 14px;
+}
+
+.field-icon {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: var(--white-soft);
+    opacity: 0.8;
+    transition: color 0.25s ease, opacity 0.25s ease;
+}
+
+.field:focus-within .field-icon {
+    color: var(--red);
+    opacity: 1;
+}
+
+.field-icon svg {
+    width: 20px;
+    height: 20px;
+    display: block;
+}
+
+input,
+textarea {
+    width: 100%;
+    color: var(--white);
+    background: transparent;
+    border: none;
+    outline: none;
+    resize: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--white) !important;
+    -webkit-box-shadow: 0 0 0px 1000px #0d0d0d inset !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+input {
+    height: 100%;
+    min-height: 44px;
+}
+
+textarea {
+    min-height: 70px;
+    line-height: 1.55;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: rgba(217, 213, 207, 0.60);
+}
+
+/* Send Button */
+
+.send-button {
+    min-height: clamp(46px, 5vh, 56px);
+    margin-top: 4px;
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    cursor: pointer;
+    color: var(--white);
+    background: linear-gradient(90deg, #b70e1c, #ff2638 50%, #b70e1c);
+    border: 1px solid rgba(255, 74, 87, 0.85);
+    border-radius: 4px;
+    box-shadow: 0 0 20px rgba(255, 38, 56, 0.28), inset 0 0 20px rgba(255, 255, 255, 0.05);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.24em;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.send-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 32px rgba(255, 38, 56, 0.42), inset 0 0 20px rgba(255, 255, 255, 0.08);
+}
+
+.send-arrow {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1;
+}
+
+.form-status {
+    min-height: 20px;
+    margin: 1px 0 0;
+    color: var(--white-soft);
+    font-size: 12px;
+}
+
+/* =========================================================
+   08. FOOTER
+   ========================================================= */
+/* =========================================================
+   FOOTER — MATCH CONTACT SECTION
+   ========================================================= */
+.site-footer {
+    width: 100%;
+    padding: clamp(26px, 2.5vw, 36px) clamp(24px, 5.1vw, 80px) clamp(28px, 3vw, 40px);
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 1px minmax(200px, 0.8fr) auto;
+
+    align-items: center;
+
+    column-gap: clamp(32px, 5vw, 80px);
+
+    position: relative;
+
+    background: #030303;
+
+    border-top: 1px solid rgba(215, 45, 62, 0.22);
+
+    color: #F2EEE6;
+}
+
+.footer-social {
+    padding: 8px 0;
+}
+
+.footer-name {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    margin-bottom: clamp(12px, 1.6vh, 20px);
+
+    font-family: "Manrope", Arial, sans-serif;
+
+    font-size: clamp(14px, 1.1vw, 18px);
+    line-height: 1.15;
+
+    font-weight: 800;
+    letter-spacing: 0.14em;
+}
+
+.footer-name span:first-child {
+    color: var(--white);
+}
+
+.footer-name b {
+    color: var(--white-soft);
+    font-weight: 800;
+}
+
+.footer-name em {
+    color: var(--red);
+    font-style: normal;
+    font-weight: 800;
+}
+
+.social-row {
+    display: flex;
+    align-items: flex-start;
+    gap: clamp(18px, 2.2vw, 44px);
+}
+
+.social-link {
+    min-width: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--white);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.social-link:hover {
+    color: var(--red);
+    transform: translateY(-3px);
+}
+
+.social-icon {
+    width: clamp(40px, 3.5vw, 52px);
+    height: clamp(40px, 3.5vw, 52px);
+    display: grid;
+    place-items: center;
+    border: 1.5px solid var(--red);
+    border-radius: 50%;
+    color: var(--white);
+    font-size: clamp(18px, 1.6vw, 24px);
+    font-weight: 500;
+    box-shadow: 0 0 14px rgba(255, 38, 56, 0.18);
+    transition: background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.social-link:hover .social-icon {
+    background: rgba(255, 38, 56, 0.08);
+    box-shadow: 0 0 22px rgba(255, 38, 56, 0.38);
+}
+
+.social-text {
+    font-size: clamp(19px, 1.7vw, 25px);
+    font-weight: 800;
+    letter-spacing: -0.08em;
+}
+
+.social-x {
+    font-size: clamp(17px, 1.5vw, 22px);
+}
+
+.footer-divider {
+    width: 1px;
+    height: 65px;
+    background: linear-gradient(180deg, transparent, rgba(215, 45, 62, 0.5), transparent);
+}
+
+.page-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 6px 0;
+}
+
+.page-links-title {
+    margin-bottom: 2px;
+
+    color: var(--white);
+
+    font-family: "Manrope", Arial, sans-serif;
+
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.28em;
+}
+
+.page-links-list {
+    display: flex;
+    align-items: center;
+    gap: clamp(20px, 2.5vw, 36px);
+    flex-wrap: wrap;
+}
+
+.page-links a {
+    color: var(--white-soft);
+
+    font-family: "Manrope", Arial, sans-serif;
+
+    font-size: 17px;
+    font-weight: 700;
+
+    letter-spacing: 0;
+
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.page-links a:hover {
+    color: var(--red);
+    transform: translateY(-2px);
+}
+
+/* TO TOP BUTTON */
+
+.to-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--white-soft);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.22em;
+    justify-self: end;
+    transition: color 0.25s ease;
+}
+
+.to-top:hover {
+    color: var(--white);
+}
+
+.to-top-circle {
+    width: clamp(40px, 3.5vw, 48px);
+    height: clamp(40px, 3.5vw, 48px);
+    display: grid;
+    place-items: center;
+    border: 1.5px solid var(--red);
+    border-radius: 50%;
+    color: var(--white);
+    font-size: 22px;
+    box-shadow: 0 0 14px rgba(255, 38, 56, 0.20);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.to-top:hover .to-top-circle {
+    transform: translateY(-3px);
+    box-shadow: 0 0 22px rgba(255, 38, 56, 0.42);
+}
+
+/* =========================================================
+   09. BREAKPOINTS (TABLET & MOBILE)
+   ========================================================= */
+
+@media (max-width: 1050px) {
+    .site-header {
+        grid-template-columns: 1fr auto;
+    }
+
+    .top-nav {
+        display: none;
+    }
+
+    .contact-main {
+        grid-template-columns: 45% 55%;
+    }
+
+    h1 {
+        font-size: clamp(38px, 5.5vw, 72px);
+    }
+
+    .site-footer {
+        grid-template-columns: minmax(0, 1fr) 1px minmax(180px, 0.8fr);
+    }
+
+    .to-top {
+        position: absolute;
+        right: clamp(24px, 5vw, 40px);
+        bottom: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-page {
+        min-height: 100svh;
+    }
+
+    .site-header {
+        height: 64px;
+        padding: 0 20px;
+    }
+
+    .brand {
+        font-size: 12px;
+        letter-spacing: 0.12em;
+    }
+
+    .contact-main {
+        grid-template-columns: 1fr;
+    }
+
+    .portrait-panel {
+        height: 52vh;
+        min-height: 360px;
+        max-height: 580px;
+    }
+
+    .portrait {
+        object-position: 28% 15%;
+    }
+
+    .portrait-glow,
+    .portrait-arc {
+        left: 50%;
+        top: 50%;
+    }
+
+    .form-panel {
+        padding: 44px 20px 40px;
+        border-left: none;
+        border-top: 1px solid var(--line-soft);
+    }
+
+    h1 {
+        font-size: clamp(40px, 11vw, 72px);
+    }
+
+    .contact-intro {
+        font-size: 15px;
+    }
+
+    .site-footer {
+        padding: 28px 20px 44px;
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .footer-divider {
+        display: none;
+    }
+
+    .social-row {
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+
+    .page-links {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+    }
+
+    .page-links-title {
+        grid-column: 1 / -1;
+    }
+
+    .to-top {
+        position: absolute;
+        right: 20px;
+        bottom: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .portrait-panel {
+        height: 44vh;
+        min-height: 300px;
+    }
+
+    .footer-name {
+        font-size: 14px;
+    }
+
+    .social-row {
+        justify-content: space-between;
+    }
+
+    .social-link {
+        min-width: 54px;
+        font-size: 8px;
+    }
+
+    .social-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+
+    .page-links {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* =========================================================
+   10. ACCESSIBILITY / REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}
