@@ -1,85 +1,49 @@
-
-
 /* =====================================================
-   MARQUEE SPEED
-   108px/sec
-   Smooth RIGHT → LEFT movement
+   HERO NAME MARQUEE
+   Smooth RIGHT → LEFT continuous movement
 ===================================================== */
+document.addEventListener("DOMContentLoaded", () => {
 
-const SPEED = 108;
+    const track = document.getElementById("heroNameTrack");
+    if (!track) return;
 
-let position = window.innerWidth;
+    const firstItem = track.querySelector(".hero-name-item");
+    if (!firstItem) return;
 
-let lastTime =
-    performance.now();
+    const SPEED = 108; // px/sec
+    let position = window.innerWidth;
+    let lastTime = performance.now();
+    let itemWidth = firstItem.getBoundingClientRect().width;
 
-let itemWidth =
-    firstItem.getBoundingClientRect().width;
-
-
-function updateMeasurements() {
-
-    itemWidth =
-        firstItem.getBoundingClientRect().width;
-
-}
-
-
-window.addEventListener(
-    "resize",
-    updateMeasurements
-);
-
-
-function animate(currentTime) {
-
-    const deltaTime =
-        Math.min((currentTime - lastTime) / 1000, 0.1);
-
-    lastTime =
-        currentTime;
-
-
-    /* RIGHT → LEFT */
-
-    position -=
-        SPEED * deltaTime;
-
-
-    /*
-      When the first name has completely
-      moved out of the screen, continue
-      from the next repeated name.
-    */
-
-    while (
-        itemWidth > 0 &&
-        position <= -itemWidth
-    ) {
-
-        position += itemWidth;
-
+    function updateMeasurements() {
+        if (firstItem) {
+            itemWidth = firstItem.getBoundingClientRect().width;
+        }
     }
 
+    window.addEventListener("resize", updateMeasurements);
 
-    track.style.transform =
-        `translate3d(${position}px, 0, 0)`;
+    function animate(currentTime) {
+        const deltaTime = Math.min((currentTime - lastTime) / 1000, 0.1);
+        lastTime = currentTime;
 
+        position -= SPEED * deltaTime;
+
+        while (itemWidth > 0 && position <= -itemWidth) {
+            position += itemWidth;
+        }
+
+        track.style.transform = `translate3d(${position}px, 0, 0)`;
+        requestAnimationFrame(animate);
+    }
 
     requestAnimationFrame(animate);
-
-}
-
-
-requestAnimationFrame(animate);
-
 });
 
 
 /* =====================================================
    INDEX → ABOUT CINEMATIC PAGE TRANSITION
 ===================================================== */
-
 document.addEventListener("DOMContentLoaded", () => {
 
     function navigateToAbout() {
@@ -133,10 +97,9 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-
 /* =========================================================
    CINEMATIC PORTFOLIO INTRO
-   L → R → L → R → CENTER
+   L → R → L → R → CENTER → OUTWARD REVEAL → ENTER
    ========================================================= */
 
 (function () {
@@ -150,237 +113,104 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
+    /* If user has already seen the intro during this browser session, bypass instantly */
+    if (sessionStorage.getItem("hasSeenIntro") === "true") {
+        intro.remove();
+        return;
+    }
 
-    /* -----------------------------------------------------
-       SETTINGS
-       ----------------------------------------------------- */
-
-    const SWEEP_TIME = 1450;
-    const CENTER_PAUSE = 700;
-
-    const sequence = [
-        {
-            from: -15,
-            to: 115
-        },
-        {
-            from: 115,
-            to: -15
-        },
-        {
-            from: -15,
-            to: 115
-        }
-    ];
-
-
-    /* -----------------------------------------------------
-       EASING
-       ----------------------------------------------------- */
+    const SWEEP_TIME = 1350;
+    const CENTER_PAUSE = 600;
 
     function easeInOutCubic(t) {
-
         return t < 0.5
             ? 4 * t * t * t
             : 1 - Math.pow(-2 * t + 2, 3) / 2;
-
     }
-
-
-    /* -----------------------------------------------------
-       SET BEAM POSITION
-       ----------------------------------------------------- */
 
     function setBeam(position) {
-
         light.style.opacity = "1";
-
-        light.style.transform =
-            `translateX(${position}vw) rotate(8deg)`;
-
-        nameMask.style.setProperty(
-            "--reveal-position",
-            `${position}%`
-        );
-
+        light.style.transform = `translateX(${position}vw) rotate(8deg)`;
+        nameMask.style.setProperty("--reveal-position", `${position}%`);
     }
 
-
-    /* -----------------------------------------------------
-       SWEEP
-       ----------------------------------------------------- */
-
     function sweep(from, to) {
-
         return new Promise(resolve => {
-
             const start = performance.now();
 
             function frame(now) {
-
                 const elapsed = now - start;
-
-                const rawProgress =
-                    Math.min(elapsed / SWEEP_TIME, 1);
-
-                const progress =
-                    easeInOutCubic(rawProgress);
-
-                const position =
-                    from + (to - from) * progress;
+                const rawProgress = Math.min(elapsed / SWEEP_TIME, 1);
+                const progress = easeInOutCubic(rawProgress);
+                const position = from + (to - from) * progress;
 
                 setBeam(position);
 
                 if (rawProgress < 1) {
-
                     requestAnimationFrame(frame);
-
                 } else {
-
                     resolve();
-
                 }
-
             }
 
             requestAnimationFrame(frame);
-
         });
-
     }
-
-
-    /* -----------------------------------------------------
-       START INTRO
-       ----------------------------------------------------- */
 
     async function startIntro() {
 
-        /*
-           Small initial pause lets the black/red atmosphere
-           establish before the first beam appears.
-        */
+        /* Initial pause for black/red atmosphere */
+        await new Promise(resolve => setTimeout(resolve, 400));
 
-        await new Promise(resolve =>
-            setTimeout(resolve, 450)
-        );
-
-
-        /* -----------------------------------------------
-           SWEEP 1
-           LEFT → RIGHT
-           ----------------------------------------------- */
-
+        /* 1. LEFT → RIGHT */
         await sweep(-15, 115);
+        await new Promise(resolve => setTimeout(resolve, 150));
 
-
-        await new Promise(resolve =>
-            setTimeout(resolve, 180)
-        );
-
-
-        /* -----------------------------------------------
-           SWEEP 2
-           RIGHT → LEFT
-           ----------------------------------------------- */
-
+        /* 2. RIGHT → LEFT */
         await sweep(115, -15);
+        await new Promise(resolve => setTimeout(resolve, 150));
 
-
-        await new Promise(resolve =>
-            setTimeout(resolve, 180)
-        );
-
-
-        /* -----------------------------------------------
-           SWEEP 3
-           LEFT → RIGHT
-           ----------------------------------------------- */
-
+        /* 3. LEFT → RIGHT */
         await sweep(-15, 115);
+        await new Promise(resolve => setTimeout(resolve, 150));
 
-
-        await new Promise(resolve =>
-            setTimeout(resolve, 180)
-        );
-
-
-        /* -----------------------------------------------
-           FINAL MOVE TO CENTER
-           ----------------------------------------------- */
-
+        /* 4. RIGHT → CENTER */
         await sweep(115, 50);
 
-
-        /* -----------------------------------------------
-           CENTER STOP
-           ----------------------------------------------- */
-
+        /* 5. CENTER HOLD & OUTWARD REVEAL */
         intro.classList.add("center-stopped");
+        nameMask.style.setProperty("--reveal-position", "50%");
 
+        await new Promise(resolve => setTimeout(resolve, CENTER_PAUSE));
 
-        /*
-           At the final center position, reveal the entire
-           name smoothly instead of leaving it fragmented.
-        */
-        nameMask.style.setProperty(
-            "--reveal-position",
-            "50%"
-        );
-
-
-        await new Promise(resolve =>
-            setTimeout(resolve, CENTER_PAUSE)
-        );
-
-
-        /* -----------------------------------------------
-           SHOW ENTER BUTTON
-           ----------------------------------------------- */
-
+        /* 6. SHOW ENTER BUTTON */
         enterButton.classList.add("visible");
-
     }
 
+    /* Handle Enter Button Click */
+    let exiting = false;
 
-    /* -----------------------------------------------------
-       CLICK → ENTER WEBSITE
-       ----------------------------------------------------- */
+    enterButton.addEventListener("click", function (event) {
+        if (event) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
 
-    enterButton.addEventListener("click", function () {
+        if (exiting) return;
+        exiting = true;
 
+        sessionStorage.setItem("hasSeenIntro", "true");
         intro.classList.add("exit");
 
-        /*
-           Slight delay allows the cinematic fade to finish.
-           The actual index page is already underneath.
-        */
-
         setTimeout(() => {
-
             intro.remove();
-
-        }, 1300);
-
+        }, 1250);
     });
 
-
-    /* -----------------------------------------------------
-       START
-       ----------------------------------------------------- */
-
     if (document.readyState === "loading") {
-
-        document.addEventListener(
-            "DOMContentLoaded",
-            startIntro,
-            { once: true }
-        );
-
+        document.addEventListener("DOMContentLoaded", startIntro, { once: true });
     } else {
-
         startIntro();
-
     }
 
 })();
